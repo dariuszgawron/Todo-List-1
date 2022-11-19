@@ -6,11 +6,11 @@ import SidenavHeader from "../SidenavHeader/SidenavHeader";
 import SidenavContent from "../SidenavContent/SidenavContent";
 import SidenavFooter from "../SidenavFooter/SidenavFooter";
 
-const Sidenav = () => {
+const Sidenav = props => {
     return (
-        <div className="sidenav">
+        <div className="sidenav" id="sidenav">
             <SidenavHeader />
-            <SidenavContent />
+            <SidenavContent systemLists={props.systemLists} customLists={props.customLists} />
             <SidenavFooter />
         </div>
     )
