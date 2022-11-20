@@ -12,7 +12,7 @@ const SidenavContent = props => {
             </div>
             <hr/>
             <div className='sidenav-content__custom-lists'>
-                {/* <CategoryList lists={props.customLists} /> */}
+                <CategoryList lists={props.customLists} />
             </div>
         </div>
     )

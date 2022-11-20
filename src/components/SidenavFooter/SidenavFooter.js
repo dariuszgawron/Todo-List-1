@@ -4,10 +4,10 @@ import './SidenavFooter.scss';
 
 import AddCategoryForm from "../AddCategoryForm/AddCategoryForm";
 
-const SidenavFooter = () => {
+const SidenavFooter = (props) => {
     return (
         <div className="sidenav-footer">
-            <AddCategoryForm />
+            <AddCategoryForm addCustomList={props.addCustomList} />
         </div>
     )
 };

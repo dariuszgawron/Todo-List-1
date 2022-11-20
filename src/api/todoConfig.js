@@ -1,17 +1,20 @@
 export const systemLists = [
     {
         id: 'system_all',
-        title: 'Tasks',
+        name: 'Tasks',
+        icon: '',
         default: true
     },
     {
         id: 'system_important',
-        title: 'Important',
+        name: 'Important',
+        icon: '',
         default: false
     },
     {
         id: 'system_planned',
-        title: 'Planned',
+        name: 'Planned',
+        icon: '',
         default: false
     }
 ];

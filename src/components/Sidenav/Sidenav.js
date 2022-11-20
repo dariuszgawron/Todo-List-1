@@ -10,8 +10,8 @@ const Sidenav = props => {
     return (
         <div className="sidenav" id="sidenav">
             <SidenavHeader />
-            <SidenavContent systemLists={props.systemLists} customLists={props.customLists} />
-            <SidenavFooter />
+            <SidenavContent systemLists={props.systemLists} customLists={props.customLists}  />
+            <SidenavFooter addCustomList={props.addCustomList} />
         </div>
     )
 };

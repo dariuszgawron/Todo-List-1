@@ -13,7 +13,7 @@ const CategoryList = props => {
                                 <div className="category-list__content">
                                     <h3 className="category-list__title">
                                         <i className="caategory-list__icon"></i>
-                                        {list.title}
+                                        {list.name}
                                     </h3>
                                     <div className="category-list__counter">
                                         X
