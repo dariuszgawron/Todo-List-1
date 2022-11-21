@@ -1,26 +1,8 @@
 .category-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: .3rem;
+    padding: .5rem;
 
-    &__item {
-
-    }
-
-    &__link {
-
-    }
-
-    &__content {
-
-    }
-
-    &__title {
-
-    }
-
-    &__icon {
-
-    }
-
-    &__counter {
-
-    }
+    
 }

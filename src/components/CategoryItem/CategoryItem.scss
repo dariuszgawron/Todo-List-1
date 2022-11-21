@@ -1,0 +1,43 @@
+.category-item {
+    display: grid;
+    grid-template-columns: auto min-content;
+    align-items: center;
+    border-radius: .3rem;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(48, 143, 222);
+    }
+
+    &--selected {
+        background-color: rgb(48, 143, 222);
+        position: relative;
+
+        &::before {
+            content: '';
+            background-color: rgb(177,222,177);
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: 50%;
+            width: 3px;
+        }
+    }
+
+    &__content {
+
+    }
+    
+    &__title {
+    
+    }
+    
+    &__icon {
+    
+    }
+    
+    &__counter {
+    
+    }
+}

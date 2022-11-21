@@ -4,10 +4,10 @@ import './TaskFooter.scss';
 
 import AddTaskForm from "../AddTaskForm/AddTaskForm";
 
-const TaskFooter = () => {
+const TaskFooter = props => {
     return (
         <div className="task-footer">
-            <AddTaskForm />
+            <AddTaskForm addTask={props.addTask} />
         </div>
     )
 };

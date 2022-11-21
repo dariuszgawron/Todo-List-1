@@ -16,7 +16,7 @@ const TaskItem = (props) => {
             </div>
             <div className="task-item__description">
                 <h6 className="task-item__title">
-                    props.task.title
+                    {props.task.name}
                 </h6>
                 <div className="task-item__options">
 

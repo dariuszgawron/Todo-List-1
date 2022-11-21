@@ -8,10 +8,10 @@ import TaskFooter from '../TaskFooter/TaskFooter';
 
 const Main = props => {
     return (
-        <main>
+        <main className="main">
             <TaskHeader activeList={props.activeList} />
             <TaskContent activeList={props.activeList} tasks={props.tasks} />
-            <TaskFooter />
+            <TaskFooter addTask={props.addTask} />
         </main>
     )
 };

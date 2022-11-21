@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import { useEffect, useId, useState } from 'react';
 
 import todoApi from './api/todoApi';
@@ -16,6 +16,7 @@ function App() {
   const [keyword, setKeyword] = useState('');
   const [filter, setFilter] = useState('');
 
+  // Custom lists
   const addCustomList = (listName) => {
     const newCustomList = {
       id: useId, 
@@ -27,29 +28,28 @@ function App() {
     setCustomLists(modifiedCustomLists);
     localStorage.setItem('todo-lists', JSON.stringify(modifiedCustomLists));
   };
-
-  const editCustomList = (listId, listName) => {
+  const editCustomList = (listId, listName, listIcon) => {
     const modifiedCustomLists = customLists.map(customList => {
       if(customList.id === listId) {
-        return {...customList, name: listName};
+        return {...customList, name: listName, icon: listIcon};
       }
       return customList;
     });
     setCustomLists(modifiedCustomLists);
     localStorage.setItem('todo-lists', JSON.stringify(modifiedCustomLists));
   };
-
   const deleteCustomList = listId => {
     const filteredCustomLists = customLists.filter(customList => customList.id !== listId);
     setCustomLists(filteredCustomLists);
     localStorage.setItem('todo-lists', JSON.stringify(filteredCustomLists));
   };
 
-  const addTask = (taskName) => {
+  // Tasks
+  const addTask = (taskName, taskDate) => {
     const newTask = {
       id: useId, 
       name: taskName, 
-      date: '',
+      date: taskDate,
       description: '',
       timeStamp: Date.now(),
       favorite: false,
@@ -59,7 +59,6 @@ function App() {
     setTasks(modifiedTasks);
     localStorage.setItem('todo-tasks',JSON.stringify(modifiedTasks));
   };
-
   const toggleTaskState = id => {
     const modifiedTasks = tasks.map(task => {
       if(task.id === id) {
@@ -70,7 +69,6 @@ function App() {
     setTasks(modifiedTasks);
     localStorage.setItem('todo-tasks', JSON.stringify(modifiedTasks));
   }
-
   const editTask = (taskId, taskName, taskDate, taskDescription, favorite, completed) => {
     const modifiedTasks = tasks.map(task => {
       if(task.id===taskId) {
@@ -81,7 +79,6 @@ function App() {
     setTasks(modifiedTasks);
     localStorage.setItem('todo-tasks', JSON.stringify(modifiedTasks));
   };
-
   const deleteTask = taskId => {
     const filteredTasks = tasks.filter(task => task.id !== taskId);
     setTasks(filteredTasks);

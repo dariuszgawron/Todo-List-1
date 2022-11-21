@@ -1,6 +1,14 @@
 .task-form {
+    display: grid;
+    align-items: center;
+    grid-template-columns: min-content auto min-content;
+    column-gap: .5rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: .3rem;
 
     &__add {
+        padding: .6rem;
+        font-size: .9rem;
 
         &-icon {
 

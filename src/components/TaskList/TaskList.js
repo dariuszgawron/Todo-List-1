@@ -8,8 +8,8 @@ const TaskList = (props) => {
     return (
         <ul className='task-list'>
             {
-                props.tasks.map(task => {
-                    return <TaskItem task={task} />
+                props.tasks.map((task, index) => {
+                    return <TaskItem task={task} key={index} />
                 })
             }
         </ul>

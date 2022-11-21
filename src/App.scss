@@ -1,0 +1,92 @@
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* GLOBAL VARIABLES */
+:root {
+  /* FONTS */
+  --font-family: 'Poppins', sans-serif;
+  --font-size-1: 2.5rem;
+  --font-size-2: 2rem;
+  --font-size-3: 1.5rem;
+  --font-size-4: 1.25rem;
+  --font-size-5: 1rem;
+  --font-size-6: .9rem;
+  --font-size-7: .785rem;
+  --font-size-8: .725rem;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* COLORS */
+  --primary-color: '';
+  --secondary-color: '';
+  --background-primary-color: '';
+  --background-secondary-color: '';
+  --border-primary-color: '';
+  --text-primary-color: '';
+  --text-secondary-color: '';
+  --text-color-light: '';
+  --text-color-dark: '';
+  --heading-color: '';
+  --shadow-primary-color: '';
+  --shadow-secondary-color: '';
+}
+
+/* GENERAL STYLES & RESETS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-primary-color);
+  color: var(--text-color-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-semibold);
+  color: var(--heading-color);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+/* COMMON CSS CLASSES */
+
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: .8rem;
+  background-color: transparent;
+
+  &-thumb {
+    border-radius: .4rem;
+    background-color: rgb(195, 195, 195);
+    border: .15rem solid transparent;
+    background-clip: padding-box; 
+  }
+}
+
