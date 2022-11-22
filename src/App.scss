@@ -19,18 +19,21 @@
   --font-weight-bold: 700;
 
   /* COLORS */
-  --primary-color: '';
-  --secondary-color: '';
-  --background-primary-color: '';
-  --background-secondary-color: '';
+  --primary-color: rgb(146, 168, 209);
+  --secondary-color: rgb(255, 165, 0);
+  --background-primary-color: rgb(237, 241, 255);
+  --background-secondary-color: rgb(227, 231, 245);
   --border-primary-color: '';
-  --text-primary-color: '';
+  --text-primary-color: rgb(0, 0, 0);
   --text-secondary-color: '';
-  --text-color-light: '';
-  --text-color-dark: '';
-  --heading-color: '';
-  --shadow-primary-color: '';
+  --text-tertiary-color: rgb(159, 160, 162);
+  --text-color-light: rgb(255, 255, 255);
+  --text-color-dark: rgb(0, 0, 0);
+  // --heading-color: '';
+  --shadow-primary-color: rgb(159, 160, 162);
   --shadow-secondary-color: '';
+  --scrollbar-foreground-color: rgb(105, 105, 105);
+  --scrollbar-background-color: rgb(159, 160, 162);
 }
 
 /* GENERAL STYLES & RESETS */
@@ -45,9 +48,15 @@ html {
 }
 
 body {
-  font-family: var(--font-family);
   background-color: var(--background-primary-color);
   color: var(--text-color-dark);
+}
+
+body,
+button,
+input,
+textarea {
+  font-family: var(--font-family);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -74,6 +83,12 @@ button {
   cursor: pointer;
 }
 
+input, 
+textarea {
+  border: none;
+  outline: none;
+}
+
 /* COMMON CSS CLASSES */
 
 
@@ -90,3 +105,6 @@ button {
   }
 }
 
+.todo-app {
+  display: flex;
+}

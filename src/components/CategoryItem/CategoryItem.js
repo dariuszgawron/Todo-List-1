@@ -7,7 +7,7 @@ const CategoryItem = props => {
         <li className="category-item">
             <div className="category-item__content">
                 <h3 className="category-item__title">
-                    <i className="caategory-item__icon"></i>
+                    <i className={`category-item__icon ${props.list.icon || 'fa-solid fa-bars'}`}></i>
                     {props.list.name}
                 </h3>
                 <div className="category-item__counter">

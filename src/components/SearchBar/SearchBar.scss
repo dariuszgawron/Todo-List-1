@@ -1,0 +1,16 @@
+.search-bar {
+    padding: 0 1rem;
+
+    &__input {
+        width: 100%;
+        padding: .3rem .7rem;
+        border-radius: .3rem;
+        border: 1px solid rgb(211, 211, 211);
+        border-bottom: 3px solid rgb(211, 211, 211);
+        transition: .3s all;
+
+        &:focus {
+            border-bottom: 3px solid var(--secondary-color);
+        }
+    }
+}

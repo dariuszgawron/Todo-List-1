@@ -7,11 +7,11 @@ import CategoryList from '../CategoryList/CategoryList';
 const SidenavContent = props => {
     return (
         <div className='sidenav-content'>
-            <div className='sidenav-content__system-lists'>
+            <div className='sidenav-content__item'>
                 <CategoryList lists={props.systemLists} />
             </div>
-            <hr/>
-            <div className='sidenav-content__custom-lists'>
+            <hr className='sidenav-content__line' />
+            <div className='sidenav-content__item'>
                 <CategoryList lists={props.customLists} />
             </div>
         </div>

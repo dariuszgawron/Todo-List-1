@@ -6,9 +6,15 @@
     background-color: rgb(255, 255, 255);
     border-radius: .3rem;
 
+    // &__content {
+    //     margin: 0 auto;
+    //     width: 100%;
+    //     max-width: 800px;
+    // }
+
     &__add {
         padding: .6rem;
-        font-size: .9rem;
+        font-size: var(--font-size-5);
 
         &-icon {
 
@@ -16,7 +22,8 @@
     }
 
     &__input {
-
+        height: 100%;
+        padding: .6rem 0;
     }
 
     &__options {

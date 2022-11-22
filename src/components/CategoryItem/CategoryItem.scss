@@ -6,16 +6,16 @@
     cursor: pointer;
 
     &:hover {
-        background-color: rgb(48, 143, 222);
+        background-color: var(--background-secondary-color);
     }
 
     &--selected {
-        background-color: rgb(48, 143, 222);
+        background-color: var(--background-secondary-color);
         position: relative;
 
         &::before {
             content: '';
-            background-color: rgb(177,222,177);
+            background-color: var(--primary-color);
             position: absolute;
             top: 50%;
             left: 0;
@@ -26,18 +26,30 @@
     }
 
     &__content {
-
+        display: grid;
+        grid-template-columns: auto min-content;
+        padding: .4rem .8rem;
+        align-items: center;
+        color: var(--text-color-dark);
     }
     
     &__title {
-    
+        display: flex;
+        align-items: center;
+        column-gap: .5rem;
+        font-size: var(--font-size-6);
+        font-weight: var(--font-weight-normal)
+
     }
     
     &__icon {
-    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 15px;
     }
     
     &__counter {
-    
+        font-size: var(--font-size-7);
     }
 }

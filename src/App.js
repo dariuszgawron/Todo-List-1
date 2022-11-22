@@ -104,7 +104,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className='todo-app'>
       <Sidenav 
         systemLists={systemLists} 
         customLists={customLists} 
@@ -116,7 +116,8 @@ function App() {
         keyword={keyword} 
       />
       <Main 
-        lists={customLists} 
+        systemLists={systemLists}
+        customLists={customLists} 
         tasks={tasks} 
         activeList={activeList} 
         addTask={addTask} 
@@ -126,7 +127,7 @@ function App() {
         editCustomList={editCustomList}
         deleteCustomList={deleteCustomList}
       />
-    </>
+    </div>
   );
 }
 

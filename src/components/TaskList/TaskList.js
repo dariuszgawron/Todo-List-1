@@ -6,13 +6,15 @@ import TaskItem from '../TaskItem/TaskItem';
 
 const TaskList = (props) => {
     return (
-        <ul className='task-list'>
-            {
-                props.tasks.map((task, index) => {
-                    return <TaskItem task={task} key={index} />
-                })
-            }
-        </ul>
+        <div className='task-list'>
+            <ul className='task-list__content'>
+                {
+                    props.tasks.map((task, index) => {
+                        return <TaskItem task={task} key={index} />
+                    })
+                }
+            </ul>
+        </div>
     )
 };
 
