@@ -1,0 +1,89 @@
+.task-details {
+    width: 450px;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto min-content;
+    row-gap: .5rem;
+    position: relative;
+    background-color: rgb(237, 241, 255);
+
+    &__content {
+        margin-top: 3rem;
+        padding: .4rem .8rem;
+        display: flex;
+        flex-direction: column;
+        row-gap: .7rem;
+        overflow-y: auto;
+    }
+
+    &__box {
+        background-color: var(--background-primary-color);
+        border-radius: .3rem;
+    }
+
+    &__row {
+        display: flex;
+    }
+
+    &__logo {
+        width: 30px;
+    }
+
+    &__value {
+        flex: 1;
+    }
+
+    &__title {
+        font-size: var(--font-size-4);
+    }
+
+    &__icon {
+
+    }
+
+    &__remind {
+        width: 100%;
+    }
+
+    &__date {
+        width: 100%;
+    }
+
+    &__repeat {
+        width: 100%;
+    }
+
+    &__description {
+        width: 100%;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        height: 35px;
+        padding: .5rem;
+    }
+
+    &__information {
+        text-align: center;
+    }
+}
+
+.task-details-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: var(--font-size-4);
+    
+
+    &__icon {
+
+    }
+}
+
+.task-details-delete {
+
+    &__icon {
+
+    }
+}

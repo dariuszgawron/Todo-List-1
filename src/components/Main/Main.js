@@ -5,6 +5,7 @@ import './Main.scss';
 import TaskHeader from '../TaskHeader/TaskHeader';
 import TaskList from '../TaskList/TaskList';
 import TaskFooter from '../TaskFooter/TaskFooter';
+import TaskDetails from "../TaskDetails/TaskDetails";
 
 const Main = props => {
     return (
@@ -12,6 +13,7 @@ const Main = props => {
             <TaskHeader activeList={props.activeList} />
             <TaskList activeList={props.activeList} tasks={props.tasks} />
             <TaskFooter addTask={props.addTask} />
+            {/* <TaskDetails /> */}
         </main>
     )
 };

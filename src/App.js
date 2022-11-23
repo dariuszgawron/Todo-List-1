@@ -6,6 +6,7 @@ import todoApi from './api/todoApi';
 
 import Sidenav from './components/Sidenav/Sidenav';
 import Main from './components/Main/Main';
+import TaskDetails from './components/TaskDetails/TaskDetails';
 
 function App() {
   const [systemLists, setSystemLists] = useState([]);
@@ -127,6 +128,7 @@ function App() {
         editCustomList={editCustomList}
         deleteCustomList={deleteCustomList}
       />
+      <TaskDetails />
     </div>
   );
 }

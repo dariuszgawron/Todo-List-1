@@ -1,16 +1,13 @@
 .task-form {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
     display: grid;
     align-items: center;
     grid-template-columns: min-content auto min-content;
     column-gap: .5rem;
     background-color: rgb(255, 255, 255);
     border-radius: .3rem;
-
-    // &__content {
-    //     margin: 0 auto;
-    //     width: 100%;
-    //     max-width: 800px;
-    // }
 
     &__add {
         padding: .6rem;
