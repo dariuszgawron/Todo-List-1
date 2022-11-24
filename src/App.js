@@ -16,6 +16,9 @@ function App() {
   const [showDetails, setShowDetails] = useState(false);
   const [keyword, setKeyword] = useState('');
   const [filter, setFilter] = useState('');
+  const [selectedTask, setSelectedTask] = useState(null);
+  const [isEditingTask, setIsEditingTask] = useState(false);
+  const [selectedList, setSelectedList] = useState(null);
 
   // Custom lists
   const addCustomList = (listName) => {
@@ -85,6 +88,10 @@ function App() {
     setTasks(filteredTasks);
     localStorage.setItem('todo-tasks', JSON.stringify(filteredTasks));
   };
+  const toggleTaskEditMode = task => {
+    if(task.id === selectedTask)
+      setIsEditingTask(!isEditingTask);
+  }
 
   useEffect(() => {
     const getSystemLists = () => {
@@ -128,7 +135,7 @@ function App() {
         editCustomList={editCustomList}
         deleteCustomList={deleteCustomList}
       />
-      <TaskDetails />
+      <TaskDetails task={selectedTask} setIsEditingTask={setIsEditingTask} />
     </div>
   );
 }

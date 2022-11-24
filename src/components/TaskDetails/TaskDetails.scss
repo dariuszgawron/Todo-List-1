@@ -17,44 +17,71 @@
     }
 
     &__box {
-        background-color: var(--background-primary-color);
+        background-color: rgb(255, 255, 255);
         border-radius: .3rem;
     }
 
     &__row {
         display: flex;
+        align-items: center;
+        height: 40px;
+        padding: .2rem;
     }
 
     &__logo {
         width: 30px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: var(--font-size-4);
+        background-color: transparent;
     }
 
     &__value {
         flex: 1;
+        padding: 0 .2rem;
+        font-size: var(--font-size-5);
     }
 
     &__title {
+        width: 100%;
+        flex-wrap: wrap;
         font-size: var(--font-size-4);
     }
 
     &__icon {
-
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        // cursor: pointer;
     }
 
     &__remind {
         width: 100%;
+        font-size: var(--font-size-5);
     }
 
     &__date {
         width: 100%;
+        font-size: var(--font-size-5);
     }
 
     &__repeat {
         width: 100%;
+        padding: .5rem .2rem;
+        border: none;
+        outline: none;
+        border-radius: .1rem;
+        appearance: none;
+        font-size: var(--font-size-6);
+        cursor: pointer;
     }
 
     &__description {
         width: 100%;
+        padding: .2rem;
     }
 
     &__footer {
@@ -85,5 +112,58 @@
 
     &__icon {
 
+    }
+}
+
+.task-details-checkbox {
+    width: 20px;
+    height: 20px;
+    display: block;
+    position: relative;
+    justify-self: center;
+
+    &:hover .task-details-checkbox__checkmark {
+        border: 2px solid var(--primary-color);
+    }
+
+    &__input {
+        width: 0;
+        height: 0;
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+
+        &:checked ~ .task-details-checkbox__checkmark {
+            background-color: rgb(116, 141, 187);
+        }
+
+        &:checked ~ .task-details-checkbox__checkmark::after {
+            display: block;
+        }
+    }
+
+    &__checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: transparent;
+        border: 2px solid rgb(159, 160, 162);
+        cursor: pointer;
+
+        &::after {
+            content: '';
+            position: absolute;
+            display: none;
+            top: 2px;
+            left: 5px;
+            width: 3px;
+            height: 7px;
+            border: solid rgb(255, 255, 255);
+            border-width: 0 3px 0 3px;
+            transform: rotate(45deg);
+        }
     }
 }

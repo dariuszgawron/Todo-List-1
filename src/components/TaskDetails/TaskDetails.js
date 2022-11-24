@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 import './TaskDetails.scss';
 
 const TaskDetails = props => {
+    const [taskId, setTaskId] = useState(null);
+    const [taskName, setTaskName] = useState('');
+    const [taskRemind, setTaskRemind] = useState('');
+    const [taskDate, setTaskDate] = useState('');
+    const [taskRepeat, setTaskRepeat] = useState('');
+    const [taskFavorite, setTaskFavorite] = useState(false);
+    const [taskCompleted, setTaskCompleted] = useState(false);
+
     return (
         <div className="task-details">
             <div className="task-details-close">
@@ -12,14 +20,16 @@ const TaskDetails = props => {
                 <div className="task-details__box">
                     <div className="task-details__row">
                         <div className="task-details__logo">
-                            <input className="task-details__checkbox" />
-                            <span className="task-details__checkmark"></span>
+                            <div className="task-details-checkbox">
+                                <input className="task-details-checkbox__input" />
+                                <span className="task-details-checkbox__checkmark"></span>
+                            </div>
                         </div>
                         <div className="task-details__value">
-                            <input className="task-details__title" />
+                            <input className="task-details__title" value="test"/>
                         </div>
                         <div className="task-details__logo">
-                            <i className="task-details__icon"></i>
+                            <i className="task-details__icon fa-regular fa-star"></i>
                         </div>
                     </div>
                 </div>
@@ -29,7 +39,7 @@ const TaskDetails = props => {
                             <i className="task-details__icon fa-regular fa-bell"></i>
                         </div>
                         <div className="task-details__value">
-                            <input className="task-details__remind" />
+                            <input className="task-details__remind" type="text" placeholder="Remind" onFocus={e => e.target.type='datetime-local'} onBlur={e => e.target.type='text'} />
                         </div>
                     </div>
                     <div className="task-details__row">
@@ -37,7 +47,7 @@ const TaskDetails = props => {
                             <i className="task-details__icon fa-regular fa-calendar-days"></i>
                         </div>
                         <div className="task-details__value">
-                            <input className="task-details__date" />
+                            <input className="task-details__date" type="text" placeholder="Add a due date" onFocus={e => e.target.type='date'} onBlur={e => e.target.type='text'} />
                         </div>
                     </div>
                     <div className="task-details__row">
@@ -45,7 +55,7 @@ const TaskDetails = props => {
                             <i className="task-details__icon fa-solid fa-arrows-rotate"></i>
                         </div>
                         <div className="task-details__value">
-                            <select className="task-details__repeat">
+                            <select className="task-details__repeat" name="repeat">
                                 <option value="" selected>Repeat</option>
                                 <option value="daily">Daily</option>
                                 <option value="weekly">Weekly</option>
@@ -66,9 +76,9 @@ const TaskDetails = props => {
                     </div>
                 </div>
                 <div className="task-details__box">
-                    <div className="task-details__row">
+                    {/* <div className="task-details__row"> */}
                         <textarea className="task-details__description" placeholder="Notes" rows="10"></textarea>
-                    </div>
+                    {/* </div> */}
                 </div>
             </div>
             <div className="task-details__footer">
