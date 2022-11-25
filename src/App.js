@@ -7,6 +7,7 @@ import todoApi from './api/todoApi';
 import Sidenav from './components/Sidenav/Sidenav';
 import Main from './components/Main/Main';
 import TaskDetails from './components/TaskDetails/TaskDetails';
+import TaskList from './components/TaskList/TaskList';
 
 function App() {
   const [systemLists, setSystemLists] = useState([]);
@@ -47,6 +48,11 @@ function App() {
     setCustomLists(filteredCustomLists);
     localStorage.setItem('todo-lists', JSON.stringify(filteredCustomLists));
   };
+  const toggleList = listId => {
+    const selectedList = systemLists.concat(customLists).find(list => list.id === listId);
+    setSelectedList(selectedList);
+    localStorage.setItem('todo-selectedList', JSON.stringify(selectedList));
+  }
 
   // Tasks
   const addTask = (taskName, taskDate) => {
@@ -88,9 +94,14 @@ function App() {
     setTasks(filteredTasks);
     localStorage.setItem('todo-tasks', JSON.stringify(filteredTasks));
   };
-  const toggleTaskEditMode = task => {
-    if(task.id === selectedTask)
+  const toggleTask = taskId => {
+    const selected = tasks.find(task => task.id === taskId);
+    if(selectedTask.id === selected.id || selectedTask===null) {
       setIsEditingTask(!isEditingTask);
+      setSelectedTask(selected);
+    } else {
+      setSelectedTask(null);
+    }
   }
 
   useEffect(() => {
@@ -106,10 +117,22 @@ function App() {
       const tasksData = await todoApi.getCustomTasks();
       setTasks(tasksData);
     };
+    
     getSystemLists();
     getCustomLists();
     getTasks();
   }, []);
+
+  useEffect(() => {
+    const getSelectedList = async () => {
+      const selectedList = await todoApi.getSelectedList();
+      if(!selectedList) 
+        setSelectedList(systemLists[0]);
+      else
+        setSelectedList(selectedList);
+    };
+    getSelectedList();
+  }, [systemLists]);
 
   return (
     <div className='todo-app'>
@@ -122,6 +145,8 @@ function App() {
         editCustomList={editCustomList}
         deleteCustomList={deleteCustomList}
         keyword={keyword} 
+        selectedList={selectedList}
+        toggleList={toggleList}
       />
       <Main 
         systemLists={systemLists}
@@ -134,6 +159,8 @@ function App() {
         deleteTask={deleteTask}
         editCustomList={editCustomList}
         deleteCustomList={deleteCustomList}
+        toggleTask={toggleTask}
+        selectedTask={selectedTask}
       />
       <TaskDetails task={selectedTask} setIsEditingTask={setIsEditingTask} />
     </div>

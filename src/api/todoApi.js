@@ -9,6 +9,9 @@ const todoApi = {
     },
     getCustomTasks: () => {
         return JSON.parse(localStorage.getItem('todo-tasks')) || [];
+    },
+    getSelectedList: () => {
+        return JSON.parse(localStorage.getItem('todo-selectedList')) || null;
     }
 }
 

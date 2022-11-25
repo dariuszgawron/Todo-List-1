@@ -10,7 +10,7 @@ const TaskList = (props) => {
             <ul className='task-list__content'>
                 {
                     props.tasks.map((task, index) => {
-                        return <TaskItem task={task} key={index} />
+                        return <TaskItem task={task} selectedTask={props.selectedTask} toggleTask={props.toggleTask} key={index} />
                     })
                 }
             </ul>

@@ -11,7 +11,7 @@ const Sidenav = props => {
         <header className="header">
             <div className="sidenav" id="sidenav">
                 <SidenavHeader />
-                <SidenavContent systemLists={props.systemLists} customLists={props.customLists} />
+                <SidenavContent systemLists={props.systemLists} customLists={props.customLists} selectedList={props.selectedList} toggleList={props.toggleList} />
                 <SidenavFooter addCustomList={props.addCustomList} />
             </div>
         </header>

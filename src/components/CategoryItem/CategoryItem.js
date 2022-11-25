@@ -3,8 +3,15 @@ import React from "react";
 import './CategoryItem.scss';
 
 const CategoryItem = props => {
+    // console.log(props.list);
+    const categoryClass = (props.selectedList && (props.selectedList.id === props.list.id)) ? 'category-item--selected' : '';
+
+    const handleClick = () => {
+        props.toggleList(props.list.id);
+    }
+
     return (
-        <li className="category-item">
+        <li className={`category-item ${categoryClass}`} onClick={handleClick}>
             <div className="category-item__content">
                 <h3 className="category-item__title">
                     <i className={`category-item__icon ${props.list.icon || 'fa-solid fa-bars'}`}></i>

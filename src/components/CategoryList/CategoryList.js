@@ -9,7 +9,7 @@ const CategoryList = props => {
         <ul className="category-list">
             {
                 props.lists && props.lists.map((list, index) => {
-                    return <CategoryItem list={list} key={index} />
+                    return <CategoryItem list={list} selectedList={props.selectedList} toggleList={props.toggleList} key={index} />
                 })
             }
         </ul>

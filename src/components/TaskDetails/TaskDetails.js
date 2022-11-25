@@ -26,7 +26,7 @@ const TaskDetails = props => {
                             </div>
                         </div>
                         <div className="task-details__value">
-                            <input className="task-details__title" value="test"/>
+                            <input className="task-details__title" onChange={e => e} value="test"/>
                         </div>
                         <div className="task-details__logo">
                             <i className="task-details__icon fa-regular fa-star"></i>
@@ -39,7 +39,7 @@ const TaskDetails = props => {
                             <i className="task-details__icon fa-regular fa-bell"></i>
                         </div>
                         <div className="task-details__value">
-                            <input className="task-details__remind" type="text" placeholder="Remind" onFocus={e => e.target.type='datetime-local'} onBlur={e => e.target.type='text'} />
+                            <input className="task-details__remind" type="text" placeholder="Remind" onFocus={e => e.target.type='datetime-local'} onBlur={e => e.target.type='text'} onChange={e => e} value="test" />
                         </div>
                     </div>
                     <div className="task-details__row">
@@ -47,7 +47,7 @@ const TaskDetails = props => {
                             <i className="task-details__icon fa-regular fa-calendar-days"></i>
                         </div>
                         <div className="task-details__value">
-                            <input className="task-details__date" type="text" placeholder="Add a due date" onFocus={e => e.target.type='date'} onBlur={e => e.target.type='text'} />
+                            <input className="task-details__date" type="text" placeholder="Add a due date" onFocus={e => e.target.type='date'} onBlur={e => e.target.type='text'} onChange={e => e} value="test" />
                         </div>
                     </div>
                     <div className="task-details__row">
@@ -55,8 +55,8 @@ const TaskDetails = props => {
                             <i className="task-details__icon fa-solid fa-arrows-rotate"></i>
                         </div>
                         <div className="task-details__value">
-                            <select className="task-details__repeat" name="repeat">
-                                <option value="" selected>Repeat</option>
+                            <select className="task-details__repeat" name="repeat" defaultValue="">
+                                <option value="">Repeat</option>
                                 <option value="daily">Daily</option>
                                 <option value="weekly">Weekly</option>
                                 <option value="montly">Montly</option>

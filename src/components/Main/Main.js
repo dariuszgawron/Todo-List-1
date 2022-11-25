@@ -11,7 +11,7 @@ const Main = props => {
     return (
         <main className="main">
             <TaskHeader activeList={props.activeList} />
-            <TaskList activeList={props.activeList} tasks={props.tasks} />
+            <TaskList activeList={props.activeList} tasks={props.tasks} selectedTask={props.selectedTask} toggleTask={props.toggleTask} />
             <TaskFooter addTask={props.addTask} />
             {/* <TaskDetails /> */}
         </main>
