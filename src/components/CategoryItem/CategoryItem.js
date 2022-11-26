@@ -3,7 +3,6 @@ import React from "react";
 import './CategoryItem.scss';
 
 const CategoryItem = props => {
-    // console.log(props.list);
     const categoryClass = (props.selectedList && (props.selectedList.id === props.list.id)) ? 'category-item--selected' : '';
 
     const handleClick = () => {

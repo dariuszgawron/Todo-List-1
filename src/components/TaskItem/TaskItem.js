@@ -2,15 +2,17 @@ import React from "react";
 
 import './TaskItem.scss';
 
-const TaskItem = (props) => {
-    const taskClass = props.selectedTask && (props.selectedTask.id === props.task.id) ? 'task=item--selected' : '';
+const TaskItem = props => {
+    // console.log(props.task.id);
+    // console.log(props.selectedTask.id);
+    const taskClass = props.selectedTask && (props.selectedTask.id === props.task.id) ? 'task-item--selected' : '';
     const isChecked = props.task.checked ? 'checked' : '';
     const favoriteIconClass = props.task.favorite
         ? 'task-item__favorite-icon--fill fa-solid fa-star'
         : 'task-item__favorite-icon--empty fa-regular fa-star';
 
     const handleClick = () => {
-        console.log(props.task);
+        // console.log(props.task);
         props.toggleTask(props.task.id);
     }
 

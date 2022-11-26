@@ -9,7 +9,9 @@ const TaskList = (props) => {
         <div className='task-list'>
             <ul className='task-list__content'>
                 {
-                    props.tasks.map((task, index) => {
+                    props.tasks
+                        // .filter((task) => task.listId === props.selectedList.id)
+                        .map((task, index) => {
                         return <TaskItem task={task} selectedTask={props.selectedTask} toggleTask={props.toggleTask} key={index} />
                     })
                 }

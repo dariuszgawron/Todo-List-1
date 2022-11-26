@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import './App.scss';
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { nanoid } from 'nanoid'
 
 import todoApi from './api/todoApi';
 
@@ -23,8 +24,9 @@ function App() {
 
   // Custom lists
   const addCustomList = (listName) => {
+    // console.log();
     const newCustomList = {
-      id: useId, 
+      id: `list-${nanoid()}`, 
       name: listName, 
       icon: '',
       timeStamp: Date.now()
@@ -57,7 +59,8 @@ function App() {
   // Tasks
   const addTask = (taskName, taskDate) => {
     const newTask = {
-      id: useId, 
+      id: `task-${nanoid()}`, 
+      listId: selectedList.id,
       name: taskName, 
       date: taskDate,
       description: '',
@@ -67,7 +70,7 @@ function App() {
     };
     const modifiedTasks = [...tasks, newTask];
     setTasks(modifiedTasks);
-    localStorage.setItem('todo-tasks',JSON.stringify(modifiedTasks));
+    localStorage.setItem('todo-tasks', JSON.stringify(modifiedTasks));
   };
   const toggleTaskState = id => {
     const modifiedTasks = tasks.map(task => {
@@ -96,7 +99,7 @@ function App() {
   };
   const toggleTask = taskId => {
     const selected = tasks.find(task => task.id === taskId);
-    if(selectedTask.id === selected.id || selectedTask===null) {
+    if((selectedTask && (selectedTask.id !== selected.id)) || selectedTask === null) {
       setIsEditingTask(!isEditingTask);
       setSelectedTask(selected);
     } else {
