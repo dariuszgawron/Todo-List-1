@@ -11,6 +11,7 @@ import TaskDetails from './components/TaskDetails/TaskDetails';
 import TaskList from './components/TaskList/TaskList';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [systemLists, setSystemLists] = useState([]);
   const [customLists, setCustomLists] = useState([]);
   const [tasks, setTasks] = useState([]);
@@ -54,6 +55,8 @@ function App() {
     const selectedList = systemLists.concat(customLists).find(list => list.id === listId);
     setSelectedList(selectedList);
     localStorage.setItem('todo-selectedList', JSON.stringify(selectedList));
+    setSelectedTask(null);
+    setIsEditingTask(false);
   }
 
   // Tasks
@@ -127,45 +130,54 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const getSelectedList = async () => {
-      const selectedList = await todoApi.getSelectedList();
-      if(!selectedList) 
+    const getSelectedList =  () => {
+      const selected =  todoApi.getSelectedList();
+      // console.log(systemLists[0]);
+      if(!selected) 
         setSelectedList(systemLists[0]);
       else
-        setSelectedList(selectedList);
+        setSelectedList(selected);
     };
     getSelectedList();
+    setIsLoading(false);
   }, [systemLists]);
 
   return (
     <div className='todo-app'>
-      <Sidenav 
-        systemLists={systemLists} 
-        customLists={customLists} 
-        tasks={tasks} 
-        activeList={activeList} 
-        addCustomList={addCustomList} 
-        editCustomList={editCustomList}
-        deleteCustomList={deleteCustomList}
-        keyword={keyword} 
-        selectedList={selectedList}
-        toggleList={toggleList}
-      />
-      <Main 
-        systemLists={systemLists}
-        customLists={customLists} 
-        tasks={tasks} 
-        activeList={activeList} 
-        addTask={addTask} 
-        toggleTaskState={toggleTaskState}
-        editTask={editTask}
-        deleteTask={deleteTask}
-        editCustomList={editCustomList}
-        deleteCustomList={deleteCustomList}
-        toggleTask={toggleTask}
-        selectedTask={selectedTask}
-      />
-      <TaskDetails task={selectedTask} setIsEditingTask={setIsEditingTask} />
+    { 
+      !isLoading
+      ? <>
+          <Sidenav 
+            systemLists={systemLists} 
+            customLists={customLists} 
+            tasks={tasks} 
+            activeList={activeList} 
+            addCustomList={addCustomList} 
+            editCustomList={editCustomList}
+            deleteCustomList={deleteCustomList}
+            keyword={keyword} 
+            selectedList={selectedList}
+            toggleList={toggleList}
+          />
+          <Main 
+            systemLists={systemLists}
+            customLists={customLists} 
+            tasks={tasks} 
+            activeList={activeList} 
+            addTask={addTask} 
+            toggleTaskState={toggleTaskState}
+            editTask={editTask}
+            deleteTask={deleteTask}
+            editCustomList={editCustomList}
+            deleteCustomList={deleteCustomList}
+            toggleTask={toggleTask}
+            selectedTask={selectedTask}
+            selectedList={selectedList}
+          />
+          <TaskDetails task={selectedTask} setIsEditingTask={setIsEditingTask} />
+          </>
+      : ''
+    }
     </div>
   );
 }
