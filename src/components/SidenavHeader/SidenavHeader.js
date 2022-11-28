@@ -5,11 +5,11 @@ import './SidenavHeader.scss';
 import SidenavProfile from "../SidenavProfile/SidenavProfile";
 import SearchBar from "../SearchBar/SearchBar";
 
-const SidenavHeader = () => {
+const SidenavHeader = props => {
     return (
         <div className="sidenav-header">
             <SidenavProfile />
-            <SearchBar />
+            <SearchBar setKeyword={props.setKeyword} />
         </div>
     )
 };

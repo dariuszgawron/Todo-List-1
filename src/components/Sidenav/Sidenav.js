@@ -10,8 +10,14 @@ const Sidenav = props => {
     return (
         <header className="header">
             <div className="sidenav" id="sidenav">
-                <SidenavHeader />
-                <SidenavContent systemLists={props.systemLists} customLists={props.customLists} selectedList={props.selectedList} toggleList={props.toggleList} />
+                <SidenavHeader setKeyword={props.setKeyword} />
+                <SidenavContent 
+                    systemLists={props.systemLists} 
+                    customLists={props.customLists} 
+                    selectedList={props.selectedList} 
+                    toggleList={props.toggleList} 
+                    tasks={props.tasks}
+                />
                 <SidenavFooter addCustomList={props.addCustomList} />
             </div>
         </header>

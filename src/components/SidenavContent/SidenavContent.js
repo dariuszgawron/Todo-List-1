@@ -8,11 +8,23 @@ const SidenavContent = props => {
     return (
         <div className='sidenav-content'>
             <div className='sidenav-content__item'>
-                <CategoryList lists={props.systemLists} selectedList={props.selectedList} toggleList={props.toggleList} />
+                <CategoryList 
+                    lists={props.systemLists} 
+                    selectedList={props.selectedList} 
+                    toggleList={props.toggleList} 
+                    tasks={props.tasks}
+                    type='system'
+                />
             </div>
             <hr className='sidenav-content__line' />
             <div className='sidenav-content__item'>
-                <CategoryList lists={props.customLists} selectedList={props.selectedList} toggleList={props.toggleList} />
+                <CategoryList 
+                    lists={props.customLists} 
+                    selectedList={props.selectedList} 
+                    toggleList={props.toggleList} 
+                    tasks={props.tasks}
+                    system='custom'
+                />
             </div>
         </div>
     )

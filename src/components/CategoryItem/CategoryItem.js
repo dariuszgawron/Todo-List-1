@@ -4,6 +4,12 @@ import './CategoryItem.scss';
 
 const CategoryItem = props => {
     const categoryClass = (props.selectedList && (props.selectedList.id === props.list.id)) ? 'category-item--selected' : '';
+    const filter = (props.type === 'system') 
+        ? props.list.filter 
+        : (task) => task.listId === props.list.id;
+    let numberOfTasks = props.tasks.filter(filter).length;
+    if(!numberOfTasks)
+        numberOfTasks='';
 
     const handleClick = () => {
         props.toggleList(props.list.id);
@@ -17,7 +23,7 @@ const CategoryItem = props => {
                     {props.list.name}
                 </h3>
                 <div className="category-item__counter">
-                    X
+                    {numberOfTasks}
                 </div>
             </div>
         </li>

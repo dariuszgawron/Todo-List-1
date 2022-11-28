@@ -5,20 +5,25 @@ import './TaskList.scss';
 import TaskItem from '../TaskItem/TaskItem';
 
 const TaskList = (props) => {
-    // console.log('selected: '+props.selectedList);
-    // console.log('system: '+props.systemLists);
     const isSystemList = (props.selectedList && props.systemLists.find(list => list.id === props.selectedList.id));
-    // const filter = isSystemList ? props.selectedList.filter : (task) => task.listId === props.selectedList.id;
-    const sort = isSystemList ? props.selectedList.sort : (firstTask, secondTask) => firstTask.name.localeCompare(secondTask.name); 
-    // console.log(sort);
-    // const sort = (firstTask, secondTask) => firstTask.name.localeCompare(secondTask.name); 
+    const selectedSystemList = (isSystemList) ? props.systemLists.find(list => list.id === props.selectedList.id) : null;
+    const filter = isSystemList 
+        ? selectedSystemList.filter 
+        : (task) => task.listId === props.selectedList.id;
+    const sort = isSystemList 
+        ? selectedSystemList.sort 
+        : (firstTask, secondTask) => firstTask.name.localeCompare(secondTask.name); 
+    const keywordFilter = (props.keyword !== '') 
+        ? (task => task.name.includes(props.keyword)) 
+        : () => true;
+    console.log(keywordFilter);
     return (
         <div className='task-list'>
             <ul className='task-list__content'>
                 {
                     props.tasks
-                        // .filter(filter)
-                        // .sort((firstTask, secondTask) => firstTask.name - secondTask.name)
+                        .filter(filter)
+                        .filter(keywordFilter)
                         .sort(sort)
                         .map((task, index) => {
                         return <TaskItem task={task} selectedTask={props.selectedTask} toggleTask={props.toggleTask} key={index} />

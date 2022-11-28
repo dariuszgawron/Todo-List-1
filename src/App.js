@@ -8,7 +8,7 @@ import todoApi from './api/todoApi';
 import Sidenav from './components/Sidenav/Sidenav';
 import Main from './components/Main/Main';
 import TaskDetails from './components/TaskDetails/TaskDetails';
-import TaskList from './components/TaskList/TaskList';
+// import TaskList from './components/TaskList/TaskList';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -52,7 +52,10 @@ function App() {
     localStorage.setItem('todo-lists', JSON.stringify(filteredCustomLists));
   };
   const toggleList = listId => {
-    const selectedList = systemLists.concat(customLists).find(list => list.id === listId);
+    // const selectedList = ((listId.includes('system_')) ? systemLists : customLists).find(list => list.id === listId);
+    // const selectedList = systemLists.concat(customLists).find(list => list.id === listId);
+    const selectedList = [...systemLists, ...customLists].find(list => list.id === listId);
+    console.log(systemLists);
     setSelectedList(selectedList);
     localStorage.setItem('todo-selectedList', JSON.stringify(selectedList));
     setSelectedTask(null);
@@ -111,8 +114,8 @@ function App() {
   }
 
   useEffect(() => {
-    const getSystemLists = () => {
-      const listsData = todoApi.getSystemLists();
+    const getSystemLists =  () => {
+      const listsData =  todoApi.getSystemLists();
       setSystemLists(listsData);
     }
     const getCustomLists = async () => {
@@ -130,16 +133,18 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const getSelectedList =  () => {
-      const selected =  todoApi.getSelectedList();
-      // console.log(systemLists[0]);
+    const getSelectedList = () => {
+      const selected = todoApi.getSelectedList();
+      console.log(systemLists);
       if(!selected) 
         setSelectedList(systemLists[0]);
       else
         setSelectedList(selected);
     };
-    getSelectedList();
-    setIsLoading(false);
+    if(systemLists.length > 0) {
+      getSelectedList();
+      setIsLoading(false);
+    }
   }, [systemLists]);
 
   return (
@@ -150,14 +155,15 @@ function App() {
           <Sidenav 
             systemLists={systemLists} 
             customLists={customLists} 
-            tasks={tasks} 
             activeList={activeList} 
             addCustomList={addCustomList} 
             editCustomList={editCustomList}
             deleteCustomList={deleteCustomList}
-            keyword={keyword} 
             selectedList={selectedList}
             toggleList={toggleList}
+            tasks={tasks} 
+            keyword={keyword} 
+            setKeyword={setKeyword}
           />
           <Main 
             systemLists={systemLists}
@@ -173,6 +179,7 @@ function App() {
             toggleTask={toggleTask}
             selectedTask={selectedTask}
             selectedList={selectedList}
+            keyword={keyword}
           />
           <TaskDetails task={selectedTask} setIsEditingTask={setIsEditingTask} />
           </>
