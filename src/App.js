@@ -53,7 +53,6 @@ function App() {
   };
   const toggleList = listId => {
     // const selectedList = ((listId.includes('system_')) ? systemLists : customLists).find(list => list.id === listId);
-    // const selectedList = systemLists.concat(customLists).find(list => list.id === listId);
     const selectedList = [...systemLists, ...customLists].find(list => list.id === listId);
     console.log(systemLists);
     setSelectedList(selectedList);
@@ -78,10 +77,10 @@ function App() {
     setTasks(modifiedTasks);
     localStorage.setItem('todo-tasks', JSON.stringify(modifiedTasks));
   };
-  const toggleTaskState = id => {
+  const toggleTaskState = (taskId, property='completed') => {
     const modifiedTasks = tasks.map(task => {
-      if(task.id === id) {
-        return {...task, completed: !task.completed}
+      if(task.id === taskId) {
+        return {...task, [property]: !task[property]}
       }
       return task;
     });
@@ -105,10 +104,14 @@ function App() {
   };
   const toggleTask = taskId => {
     const selected = tasks.find(task => task.id === taskId);
+    console.log(selected);
+    console.log(selectedTask);
     if((selectedTask && (selectedTask.id !== selected.id)) || selectedTask === null) {
-      setIsEditingTask(!isEditingTask);
+      setSelectedTask(null);
       setSelectedTask(selected);
+      setIsEditingTask(true);
     } else {
+      setIsEditingTask(false);
       setSelectedTask(null);
     }
   }
@@ -181,8 +184,14 @@ function App() {
             selectedList={selectedList}
             keyword={keyword}
           />
-          <TaskDetails task={selectedTask} setIsEditingTask={setIsEditingTask} />
-          </>
+          {isEditingTask &&
+            <TaskDetails 
+              task={selectedTask} 
+              setIsEditingTask={setIsEditingTask}
+              setSelectedTask={setSelectedTask}
+            />
+          } 
+        </>
       : ''
     }
     </div>

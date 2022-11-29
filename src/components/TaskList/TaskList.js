@@ -16,7 +16,7 @@ const TaskList = (props) => {
     const keywordFilter = (props.keyword !== '') 
         ? (task => task.name.includes(props.keyword)) 
         : () => true;
-    console.log(keywordFilter);
+    // console.log(keywordFilter);
     return (
         <div className='task-list'>
             <ul className='task-list__content'>
@@ -26,7 +26,12 @@ const TaskList = (props) => {
                         .filter(keywordFilter)
                         .sort(sort)
                         .map((task, index) => {
-                        return <TaskItem task={task} selectedTask={props.selectedTask} toggleTask={props.toggleTask} key={index} />
+                        return <TaskItem 
+                            task={task} 
+                            selectedTask={props.selectedTask} 
+                            toggleTask={props.toggleTask} 
+                            toggleTaskState={props.toggleTaskState}
+                            key={index} />
                     })
                 }
             </ul>

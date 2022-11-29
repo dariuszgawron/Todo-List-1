@@ -7,7 +7,7 @@ const CategoryItem = props => {
     const filter = (props.type === 'system') 
         ? props.list.filter 
         : (task) => task.listId === props.list.id;
-    let numberOfTasks = props.tasks.filter(filter).length;
+    let numberOfTasks = props.tasks.filter(filter).filter(task => !task.completed).length;
     if(!numberOfTasks)
         numberOfTasks='';
 

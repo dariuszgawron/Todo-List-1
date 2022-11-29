@@ -24,12 +24,26 @@
         position: relative;
         display: block;
 
+        &:hover .task-item__input-checkmark {
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 0 5px var(--shadow-primary-color);
+        }
+
         &-checkbox {
             width: 0;
             height: 0;
             position: absolute;
             cursor: pointer;
             opacity: 0;
+            transition: .3s;
+
+            &:checked ~ .task-item__input-checkmark {
+                background-color: rgb(116, 141, 187);
+            }
+
+            &:checked ~ .task-item__input-checkmark::after {
+                display: block;
+            }
         }
 
         &-checkmark {
@@ -41,6 +55,7 @@
             border-radius: 50%;
             background-color: transparent;
             border: 2px solid rgb(159, 160, 162);
+            transition: .3s ease-out;
 
             &::after {
                 content: '';
@@ -50,7 +65,7 @@
                 top: 2px;
                 width: 4px;
                 height: 8px;
-
+                border: solid var(--background-primary-color);
                 border-width: 0 3px 3px 0;
                 transform: rotate(45deg);
             }
@@ -75,7 +90,6 @@
     &__favorite {
 
         &-icon {
-
         }
     }
 }

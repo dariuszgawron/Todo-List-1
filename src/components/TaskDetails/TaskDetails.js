@@ -1,19 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import './TaskDetails.scss';
 
 const TaskDetails = props => {
+    // console.log(props.task.name);
     const [taskId, setTaskId] = useState(null);
     const [taskName, setTaskName] = useState('');
-    const [taskRemind, setTaskRemind] = useState('');
-    const [taskDate, setTaskDate] = useState('');
-    const [taskRepeat, setTaskRepeat] = useState('');
+    const [taskRemind, setTaskRemind] = useState(null);
+    const [taskDate, setTaskDate] = useState(null);
+    const [taskRepeat, setTaskRepeat] = useState(false);
     const [taskFavorite, setTaskFavorite] = useState(false);
     const [taskCompleted, setTaskCompleted] = useState(false);
 
+    const handleCloseClick = () => {
+        props.setIsEditingTask(false);
+        props.setSelectedTask(null);
+    }
+
+    useEffect(() => {
+        setTaskName(props.task.name);
+        setTaskRemind(props.task.remind);
+        setTaskDate(props.task.date);
+        setTaskRepeat(props.task.repeat);
+        setTaskFavorite(props.task.favorite);
+        setTaskCompleted(props.task.completed);
+    }, [props.task]);
+
     return (
         <div className="task-details">
-            <div className="task-details-close">
+            <div className="task-details-close" onClick={handleCloseClick}>
                 <i className="task-details-close__icon fa-solid fa-xmark"></i>
             </div>
             <div className="task-details__content">
@@ -26,7 +41,7 @@ const TaskDetails = props => {
                             </div>
                         </div>
                         <div className="task-details__value">
-                            <input className="task-details__title" onChange={e => e} value="test"/>
+                            <input className="task-details__title" onChange={e => e} value={taskName} />
                         </div>
                         <div className="task-details__logo">
                             <i className="task-details__icon fa-regular fa-star"></i>
