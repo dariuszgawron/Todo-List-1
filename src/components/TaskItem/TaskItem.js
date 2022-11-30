@@ -1,9 +1,9 @@
-import React, { useReducer, useRef, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 
 import './TaskItem.scss';
 
 const TaskItem = props => {
-    const [checked, setChecked] = useState(props.task.completed);
+    const [checked, setChecked] = useState(false);
     const taskClass = props.selectedTask && (props.selectedTask.id === props.task.id) ? 'task-item--selected' : '';
     const isChecked = props.task.checked ? 'checked' : '';
     const favoriteIconClass = props.task.favorite
@@ -25,6 +25,19 @@ const TaskItem = props => {
         props.toggleTaskState(props.task.id, 'favorite');
     }
 
+    const getRemainingTime = (date) => {
+        const today = new Date();
+        const selectedDate = new Date(date);
+        const remainingTime = '';
+
+
+        return remainingTime;
+    }
+
+    useEffect(() => {
+        setChecked(props.task.completed);
+    }, [props.task])
+
     return (
         <li className={`task-item ${taskClass}`} onClick={handleTaskClick}>
             <div className="task-item__input" onClick={handleCheckboxClick}>
@@ -36,7 +49,23 @@ const TaskItem = props => {
                     {props.task.name}
                 </h6>
                 <div className="task-item__options">
+                    <span className="task-item__options-item">
+                        Lista
+                    </span>
+                    {
+                        getRemainingTime(props.task.date) !== '' 
+                        ?   <span>
 
+                            </span>
+                        : ''
+                    }
+                    {
+                        props.task.repeat !== ''
+                        ?   <span className="task-item__option-item">
+                                <i className="fa-solid fa-rotate"></i>
+                            </span>
+                        :   null
+                    }
                 </div>
             </div>
             <div className="task-item__favorite" onClick={handleFavoriteClick}>

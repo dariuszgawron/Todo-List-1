@@ -68,6 +68,8 @@ function App() {
       listId: selectedList.id,
       name: taskName, 
       date: taskDate,
+      remind: '',
+      repeat: '',
       description: '',
       timeStamp: Date.now(),
       favorite: false,
@@ -87,10 +89,10 @@ function App() {
     setTasks(modifiedTasks);
     localStorage.setItem('todo-tasks', JSON.stringify(modifiedTasks));
   }
-  const editTask = (taskId, taskName, taskDate, taskDescription, favorite, completed) => {
+  const editTask = (taskId, property, value) => {
     const modifiedTasks = tasks.map(task => {
       if(task.id===taskId) {
-        return {...task, name: taskName, description: taskDescription}
+        return {...task, [property]: value}
       }
       return task;
     });
@@ -189,6 +191,8 @@ function App() {
               task={selectedTask} 
               setIsEditingTask={setIsEditingTask}
               setSelectedTask={setSelectedTask}
+              editTask={editTask}
+              toggleTaskState={toggleTaskState}
             />
           } 
         </>
