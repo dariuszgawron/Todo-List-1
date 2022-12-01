@@ -5,6 +5,8 @@ import './AddTaskForm.scss';
 const AddTaskForm = props => {
     const [taskName, setTaskName] = useState('');
     const [taskDate, setTaskDate] = useState('');
+    const [taskRemind, setTaskRemind] = useState('');
+    const [taskRepeat, setTaskRepeat] = useState('');
 
     const handleChange = e => {
         setTaskName(e.target.value);

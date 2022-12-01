@@ -135,10 +135,10 @@ const TaskDetails = props => {
                 <div className="task-details__box">
                     <div className="task-details__row">
                         <div className="task-details__logo">
-                            <i className="task-details__icon fa-regular fa-file-lines"></i>
+                            <i className={`task-details__icon ${props.list.icon}`}></i>
                         </div>
                         <div className="task-details__value">
-                            Lista
+                            {props.list.name}
                         </div>
                     </div>
                 </div>

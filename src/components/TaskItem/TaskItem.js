@@ -26,13 +26,32 @@ const TaskItem = props => {
     }
 
     const getRemainingTime = (date) => {
-        const today = new Date();
+        if(date === '') return '';
+        const today = (new Date());
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
         const selectedDate = new Date(date);
-        const remainingTime = '';
-
-
+        const todayInHours = today.setHours(0, 0, 0, 0);
+        const tomorrowInHours = tomorrow.setHours(0, 0, 0, 0);
+        const selectedDateInHours = selectedDate.setHours(0, 0, 0, 0);
+        let remainingTime = '';
+        if(selectedDateInHours === todayInHours) {
+            remainingTime = 'Today';
+        } else if (selectedDateInHours === tomorrowInHours) {
+            remainingTime = 'Tomorrow';
+        } else if (selectedDateInHours <= todayInHours) {
+            remainingTime = 'Overdue';
+        } else if (selectedDateInHours !== '') {
+            const options = {
+                weekday: "short",
+                day: "numeric",
+                month: "short"
+            };
+            remainingTime = selectedDate.toLocaleDateString("en-GB", options);
+        }
         return remainingTime;
     }
+    const remainingTime = getRemainingTime(props.task.date);
 
     useEffect(() => {
         setChecked(props.task.completed);
@@ -49,22 +68,26 @@ const TaskItem = props => {
                     {props.task.name}
                 </h6>
                 <div className="task-item__options">
-                    <span className="task-item__options-item">
-                        Lista
-                    </span>
                     {
-                        getRemainingTime(props.task.date) !== '' 
-                        ?   <span>
-
+                        props.list !== ''
+                        ?   <span className="task-item__options-item">
+                                {props.list.name}
                             </span>
-                        : ''
+                        :   ''
+                    }           
+                    {
+                        remainingTime !== '' 
+                        ?   <span className={`task-item__options-item ${remainingTime === 'Overdue' ? 'task-item__options-item--warning' : '' }`}>
+                                {remainingTime}
+                            </span>
+                        :   ''
                     }
                     {
                         props.task.repeat !== ''
-                        ?   <span className="task-item__option-item">
+                        ?   <span className="task-item__options-item">
                                 <i className="fa-solid fa-rotate"></i>
                             </span>
-                        :   null
+                        :   ''
                     }
                 </div>
             </div>

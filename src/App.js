@@ -29,7 +29,7 @@ function App() {
     const newCustomList = {
       id: `list-${nanoid()}`, 
       name: listName, 
-      icon: '',
+      icon: 'fa-solid fa-bars',
       timeStamp: Date.now()
     };
     const modifiedCustomLists = [...customLists, newCustomList];
@@ -62,14 +62,14 @@ function App() {
   }
 
   // Tasks
-  const addTask = (taskName, taskDate) => {
+  const addTask = (taskName, taskDate = '', taskRemind = '', taskRepeat = '') => {
     const newTask = {
       id: `task-${nanoid()}`, 
       listId: selectedList.id,
       name: taskName, 
       date: taskDate,
-      remind: '',
-      repeat: '',
+      remind: taskRemind,
+      repeat: taskRepeat,
       description: '',
       timeStamp: Date.now(),
       favorite: false,
@@ -171,8 +171,8 @@ function App() {
             setKeyword={setKeyword}
           />
           <Main 
+            lists={[...systemLists,...customLists]}
             systemLists={systemLists}
-            customLists={customLists} 
             tasks={tasks} 
             activeList={activeList} 
             addTask={addTask} 
@@ -189,6 +189,7 @@ function App() {
           {isEditingTask &&
             <TaskDetails 
               task={selectedTask} 
+              list={[...systemLists,...customLists].find(list => list.id === selectedTask.listId)}
               setIsEditingTask={setIsEditingTask}
               setSelectedTask={setSelectedTask}
               editTask={editTask}

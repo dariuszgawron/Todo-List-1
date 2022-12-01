@@ -3,6 +3,7 @@ import React from 'react';
 import './TaskHeader.scss';
 
 const TaskHeader = (props) => {
+    const iconClass = props.selectedList.icon;
     return (
         <div className='task-header'>
             <div className='task-header__container'>
@@ -11,9 +12,9 @@ const TaskHeader = (props) => {
                         <i className='task-header-menu__icon fa-solid fa-bars'></i>
                     </div>
                     <div className='task-header-details'>
-                        <i className='task-header-details__icon fa-solid fa-table-list'></i>
+                        <i className={`task-header-details__icon ${iconClass}`}></i>
                         <h3 className='task-header-details__title'>
-                            Test
+                            {props.selectedList.name}
                         </h3>
                     </div>
                 </div>

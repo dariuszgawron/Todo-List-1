@@ -28,6 +28,7 @@ const TaskList = (props) => {
                         .map((task, index) => {
                         return <TaskItem 
                             task={task} 
+                            list={(isSystemList) ? props.lists.find(list => list.id === task.listId) : ''}
                             selectedTask={props.selectedTask} 
                             toggleTask={props.toggleTask} 
                             toggleTaskState={props.toggleTaskState}

@@ -85,6 +85,29 @@
 
     &__options {
 
+        &-item {
+
+            &::before {
+                font-family: "Font Awesome 6 Free";
+                content: "\f192";
+                padding: 0 .4rem;
+                vertical-align: middle;
+                font-size: .3rem;
+                font-weight: var(--font-weight-bold);
+                color: rgb(105, 105, 105);
+            }
+
+            &:first-child {
+                &::before {
+                    content: '';
+                    padding: 0;
+                }
+            }
+
+            &--warning {
+                color: rgb(255, 0, 0)
+            }
+        }
     }
 
     &__favorite {

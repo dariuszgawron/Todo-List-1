@@ -13,14 +13,18 @@ const Main = props => {
     // console.log(props.systemLists);
     return (
         <main className="main">
-            <TaskHeader activeList={props.activeList} />
+            <TaskHeader 
+                activeList={props.activeList} 
+                selectedList={props.selectedList}
+            />
             <TaskList 
                 activeList={props.activeList} 
                 tasks={props.tasks} 
                 selectedTask={props.selectedTask} 
                 toggleTask={props.toggleTask} 
                 selectedList={props.selectedList} 
-                systemLists={props.systemLists} 
+                lists={props.lists} 
+                systemLists={props.systemLists}
                 keyword={props.keyword} 
                 toggleTaskState={props.toggleTaskState}
             />
