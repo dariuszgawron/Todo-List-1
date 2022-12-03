@@ -90,26 +90,18 @@
                 transform: rotate(45deg);
             }
         }
-
-        &-checkbox {
-
-        }
-
-        &-checkmark {
-
-        }
     }
 
     &__value {
         flex: 1;
         padding: 0 .2rem;
-        font-size: var(--font-size-5);
+        font-size: var(--font-size-6);
     }
 
     &__title {
         width: 100%;
         flex-wrap: wrap;
-        font-size: var(--font-size-4);
+        font-size: var(--font-size-5);
     }
 
     &__icon {
@@ -143,7 +135,7 @@
 
     &__description {
         width: 100%;
-        padding: .2rem;
+        padding: .7rem;
     }
 
     &__footer {
@@ -154,23 +146,50 @@
     }
 
     &__information {
+        flex: 1;
         text-align: center;
+        color: var(--text-tertiary-color);
     }
 }
 
 .task-details-close {
     position: absolute;
     top: 10px;
-    right: 15px;
+    right: 13px;
+    width: 30px;
+    height: 30px;
+    padding: .3rem;
+    display: flex;
+    justify-content: center;
     font-size: var(--font-size-4);
-    
+    cursor: pointer;
+    border-radius: .3rem;
+
+    &:hover {
+        background-color: var(--background-secondary-color);
+    }
+
+    &:hover .task-details-close__icon {
+        transform: rotate(90deg);
+    }
 
     &__icon {
-
+        transition: .3s ease-out;
     }
 }
 
 .task-details-delete {
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size-5);
+    color: var(--text-tertiary-color);
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(255, 65, 65);
+    }
 
     &__icon {
 
@@ -227,5 +246,24 @@
             border-width: 0 3px 0 3px;
             transform: rotate(45deg);
         }
+    }
+}
+
+.task-details-favorite {
+    width: 30px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size-5);
+    background-color: transparent;
+    cursor: pointer;
+
+    // &:hover {
+    //     color: var(--primary-color);
+    // }
+
+    &__icon {
+
     }
 }

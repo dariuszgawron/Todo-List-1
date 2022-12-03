@@ -3,7 +3,8 @@
     grid-template-columns: 22px 1fr 20px;
     align-items: center;
     column-gap: .8rem;
-    padding: .5rem;
+    padding: .4rem .5rem;
+    min-height: 50px;
     border-radius: .3rem;
     background-color: var(--background-primary-color);
     border: 1px solid var(--background-primary-color);
@@ -75,15 +76,18 @@
     &__description {
         display: flex;
         flex-direction: column;
-        row-gap: .2rem;
+        row-gap: .1rem;
     }
 
     &__title {
         font-size: var(--font-size-6);
-        font-weight: var(--font-weight-medium);
+        font-weight: var(--font-weight-normal);
+        line-height: var(--font-size-4);
     }
 
     &__options {
+        font-size: var(--font-size-7);
+        color: var(--text-tertiary-color);
 
         &-item {
 

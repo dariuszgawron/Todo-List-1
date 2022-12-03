@@ -17,6 +17,8 @@
         margin: 0 auto;
         width: 100%;
         max-width: 800px;
+        display: flex;
+        justify-content: space-between;
     }
 
     &__content {
@@ -41,6 +43,25 @@
 
     &__title {
 
+    }
+
+    &__icon {
+
+    }
+}
+
+.task-header-settings {
+    position: relative;
+
+    &__button {
+        padding: .2rem .5rem;
+        border-radius: .3rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--background-primary-color);
+            color: var(--text-color-dark);
+        }
     }
 
     &__icon {

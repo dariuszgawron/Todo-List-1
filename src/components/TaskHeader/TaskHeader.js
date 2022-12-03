@@ -19,7 +19,11 @@ const TaskHeader = (props) => {
                     </div>
                 </div>
                 <div className='task-header__content'>
-
+                    <div className='task-header-settings'>
+                        <div className='task-header-settings__button'>
+                            <i className='task-header-settings__icon fa-solid fa-ellipsis'></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

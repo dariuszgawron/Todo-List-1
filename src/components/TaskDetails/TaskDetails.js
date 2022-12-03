@@ -95,8 +95,8 @@ const TaskDetails = props => {
                         <div className="task-details__value">
                             <input className="task-details__title" type="text" value={taskName} onChange={handleNameChange} onBlur={handleNameBlur} />
                         </div>
-                        <div className="task-details__logo" onClick={handleFavoriteClick}>
-                            <i className={`task-details__icon ${favoriteIconClass}`}></i>
+                        <div className="task-details-favorite" onClick={handleFavoriteClick}>
+                            <i className={`task-details-favorite__icon ${favoriteIconClass}`}></i>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@ const TaskDetails = props => {
                             <i className="task-details__icon fa-regular fa-calendar-days"></i>
                         </div>
                         <div className="task-details__value">
-                            <input className="task-details__date" type="text" placeholder="Add a due date" onFocus={e => e.target.type='date'} onBlur={handleDateBlur} onChange={handleDateChange} value={taskDate}/>
+                            <input className="task-details__date" type="text" placeholder="Execution date" onFocus={e => e.target.type='date'} onBlur={handleDateBlur} onChange={handleDateChange} value={taskDate}/>
                         </div>
                     </div>
                     <div className="task-details__row">
@@ -143,7 +143,7 @@ const TaskDetails = props => {
                     </div>
                 </div>
                 <div className="task-details__box">
-                    <textarea className="task-details__description" placeholder="Notes" value={taskDescription} onChange={handleDescriptionChange} onBlur={handleDescriptionBlur} rows="10"></textarea>
+                    <textarea className="task-details__description" placeholder="Notes" value={taskDescription} onChange={handleDescriptionChange} onBlur={handleDescriptionBlur} rows="8"></textarea>
                 </div>
             </div>
             <div className="task-details__footer">
@@ -151,7 +151,7 @@ const TaskDetails = props => {
                     Created: {getTaskTimeStamp()}
                 </div>
                 <div className="task-details-delete">
-                    <i className="task-details-delete__icon"></i>
+                    <i className="task-details-delete__icon fa-regular fa-trash-can"></i>
                 </div>
             </div>
         </div>

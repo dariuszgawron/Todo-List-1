@@ -8,6 +8,7 @@
     column-gap: .5rem;
     background-color: rgb(255, 255, 255);
     border-radius: .3rem;
+    overflow: hidden;
 
     &__add {
         padding: .6rem;
@@ -24,15 +25,22 @@
     }
 
     &__options {
-
+        display: flex;
+        font-size: var(--font-size-4);
     }
 
 }
 
 .task-form-option {
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(245, 247, 253);
+    }
 
     &__button {
-
+        padding: .6rem;
     }
 
     &__icon {
