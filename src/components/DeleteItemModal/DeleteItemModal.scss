@@ -1,0 +1,54 @@
+.delete-item-modal {
+    
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem 1.2rem;
+        width: 100%;
+        max-width: 320px;
+        background-color: var(--background-primary-color);
+        border-radius: .4rem;
+    }
+
+    &__title {
+        margin-bottom: .6rem;
+        font-size: var(--font-size-4);
+        font-weight: var(--font-weight-bold);
+    }
+
+    &__description {
+        min-height: 100px;
+        font-size: var(--font-size-5);
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+        max-width: 270px;
+    }
+
+    &__button {
+        width: 100%;
+        padding-top: .4rem;
+        padding-bottom: .4rem;
+        // padding: 1.5rem auto;
+        background-color: var(--background-tertiary-color);
+        color: var(--text-primary-color);
+        border: 1px solid var(--border-primary-color);
+        border-radius: .5rem;
+
+        &:hover {
+            box-shadow: 0 0 5px 0 var(--shadow-primary-color);
+        }
+
+        &--warning {
+            background-color: rgb(255, 1, 1);
+            color: var(--text-color-light);
+        }
+    }
+}

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
+
 import './TaskDetails.scss';
 
 const TaskDetails = props => {
@@ -40,6 +42,10 @@ const TaskDetails = props => {
         props.toggleTaskState(props.task.id, 'favorite');
     }
 
+    const handleDeleteClick = () => {
+        props.setIsDeletingTask(true);
+    }
+
     const handleNameChange = e => {
         setTaskName(e.target.value);
     }
@@ -78,8 +84,17 @@ const TaskDetails = props => {
         return createDate;
     }
 
+    const onDelete = () => {
+        props.setIsEditingTask(false);
+        props.setIsDeletingTask(false);
+    }
+
+    const onCancel = () => {
+        props.setIsDeletingTask(false);
+    }
+
     return (
-        <div className="task-details">
+        <div className={`task-details ${props.isEditingTask ? 'task-details--active' : ''}`}>
             <div className="task-details-close" onClick={handleCloseClick}>
                 <i className="task-details-close__icon fa-solid fa-xmark"></i>
             </div>
@@ -150,10 +165,23 @@ const TaskDetails = props => {
                 <div className="task-details__information">
                     Created: {getTaskTimeStamp()}
                 </div>
-                <div className="task-details-delete">
+                <div className="task-details-delete" onClick={handleDeleteClick}>
                     <i className="task-details-delete__icon fa-regular fa-trash-can"></i>
                 </div>
             </div>
+            {   
+                props.isDeletingTask &&
+                <DeleteItemModal 
+                    title="Delete task"
+                    description={`Are you sure you want to delete the "${taskName}" task?`}
+                    itemId={props.task.id}
+                    deleteItem={props.deleteTask}
+                    onDelete={onDelete}
+                    onCancel={onCancel}
+                    isDeletingTask={props.isDeletingTask}
+                    setIsDeletingTask={props.setIsDeletingTask}
+                />
+            }
         </div>
     )
 };

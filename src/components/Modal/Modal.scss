@@ -1,0 +1,30 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, .723);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s ease-out;
+
+    &--active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &__content {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+        padding: 1.5rem;
+        display: flex;
+        justify-content: center;
+        // position: relative;
+    }
+}

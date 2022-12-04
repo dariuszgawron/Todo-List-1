@@ -1,11 +1,19 @@
 .task-details {
-    width: 450px;
+    // width: 450px;
+    visibility: hidden;
+    width: 0;
     height: 100vh;
     display: grid;
     grid-template-rows: auto min-content;
     row-gap: .5rem;
     position: relative;
     background-color: rgb(237, 241, 255);
+    transition: 7s ease-out;
+
+    &--active {
+        visibility: visible;
+        width: 450px;
+    }
 
     &__content {
         margin-top: 3rem;

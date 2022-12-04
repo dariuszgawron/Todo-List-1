@@ -21,6 +21,7 @@ function App() {
   const [filter, setFilter] = useState('');
   const [selectedTask, setSelectedTask] = useState(null);
   const [isEditingTask, setIsEditingTask] = useState(false);
+  const [isDeletingTask, setIsDeletingTask] = useState(false);
   const [selectedList, setSelectedList] = useState(null);
 
   // Custom lists
@@ -59,6 +60,7 @@ function App() {
     localStorage.setItem('todo-selectedList', JSON.stringify(selectedList));
     setSelectedTask(null);
     setIsEditingTask(false);
+    setIsDeletingTask(false);
   }
 
   // Tasks
@@ -112,9 +114,11 @@ function App() {
       setSelectedTask(null);
       setSelectedTask(selected);
       setIsEditingTask(true);
+      setIsDeletingTask(false);
     } else {
       setIsEditingTask(false);
       setSelectedTask(null);
+      setIsDeletingTask(false);
     }
   }
 
@@ -190,9 +194,13 @@ function App() {
             <TaskDetails 
               task={selectedTask} 
               list={[...systemLists,...customLists].find(list => list.id === selectedTask.listId)}
+              isEditingTask={isEditingTask}
               setIsEditingTask={setIsEditingTask}
+              isDeletingTask={isDeletingTask}
+              setIsDeletingTask={setIsDeletingTask}
               setSelectedTask={setSelectedTask}
               editTask={editTask}
+              deleteTask={deleteTask}
               toggleTaskState={toggleTaskState}
             />
           } 
