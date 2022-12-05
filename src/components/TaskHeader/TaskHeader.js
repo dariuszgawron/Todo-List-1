@@ -1,9 +1,22 @@
 import React from 'react';
 
+import DropdownList from '../DropdownList/DropdownList';
+// import DeleteItemModal from '../DeleteItemModal/DeleteItemModal';
+
 import './TaskHeader.scss';
 
 const TaskHeader = (props) => {
     const iconClass = props.selectedList.icon;
+
+    // const onDelete = () => {
+    //     props.setIsEditingTask(false);
+    //     props.setIsDeletingList(false);
+    // }
+
+    // const onCancel = () => {
+    //     props.setIsDeletingList(false);
+    // }
+
     return (
         <div className='task-header'>
             <div className='task-header__container'>
@@ -19,13 +32,26 @@ const TaskHeader = (props) => {
                     </div>
                 </div>
                 <div className='task-header__content'>
-                    <div className='task-header-settings'>
-                        <div className='task-header-settings__button'>
-                            <i className='task-header-settings__icon fa-solid fa-ellipsis'></i>
-                        </div>
-                    </div>
+                    <DropdownList 
+                        setIsEditingList={props.setIsEditingList} 
+                        setIsDeletingList={props.setIsDeletingList}
+                    />
                 </div>
             </div>
+            {/* {   
+                props.isDeletingList 
+                ?   <DeleteItemModal 
+                        title="Delete list"
+                        description={`Are you sure you want to delete the "${props.selectedList.name}" list?`}
+                        itemId={props.selectedList.id}
+                        deleteItem={props.deleteList}
+                        onDelete={onDelete}
+                        onCancel={onCancel}
+                        isDeleting={props.isDeletingList}
+                        setIsDeleting={props.setIsDeletingList}
+                    />
+                :   null
+            } */}
         </div>
     )
 };

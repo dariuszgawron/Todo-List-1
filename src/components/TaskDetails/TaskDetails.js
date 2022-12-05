@@ -178,8 +178,8 @@ const TaskDetails = props => {
                     deleteItem={props.deleteTask}
                     onDelete={onDelete}
                     onCancel={onCancel}
-                    isDeletingTask={props.isDeletingTask}
-                    setIsDeletingTask={props.setIsDeletingTask}
+                    isDeleting={props.isDeletingTask}
+                    setIsDeleting={props.setIsDeletingTask}
                 />
             }
         </div>

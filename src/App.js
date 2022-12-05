@@ -8,6 +8,8 @@ import todoApi from './api/todoApi';
 import Sidenav from './components/Sidenav/Sidenav';
 import Main from './components/Main/Main';
 import TaskDetails from './components/TaskDetails/TaskDetails';
+import DeleteItemModal from './components/DeleteItemModal/DeleteItemModal';
+import EditListModal from './components/EditListModal/EditListModal';
 // import TaskList from './components/TaskList/TaskList';
 
 function App() {
@@ -22,11 +24,12 @@ function App() {
   const [selectedTask, setSelectedTask] = useState(null);
   const [isEditingTask, setIsEditingTask] = useState(false);
   const [isDeletingTask, setIsDeletingTask] = useState(false);
+  const [isEditingList, setIsEditingList] = useState(false);
+  const [isDeletingList, setIsDeletingList] = useState(false);
   const [selectedList, setSelectedList] = useState(null);
 
   // Custom lists
   const addCustomList = (listName) => {
-    // console.log();
     const newCustomList = {
       id: `list-${nanoid()}`, 
       name: listName, 
@@ -49,8 +52,13 @@ function App() {
   };
   const deleteCustomList = listId => {
     const filteredCustomLists = customLists.filter(customList => customList.id !== listId);
+    const filteredTasks = tasks.filter(task => task.listId !== listId);
+    setTasks(filteredTasks);
     setCustomLists(filteredCustomLists);
+    setSelectedList(systemLists[0]);
+    localStorage.setItem('todo-tasks', JSON.stringify(filteredTasks));
     localStorage.setItem('todo-lists', JSON.stringify(filteredCustomLists));
+    localStorage.setItem('todo-selectedList', JSON.stringify(systemLists[0]));
   };
   const toggleList = listId => {
     // const selectedList = ((listId.includes('system_')) ? systemLists : customLists).find(list => list.id === listId);
@@ -122,6 +130,15 @@ function App() {
     }
   }
 
+  const onDeleteList = () => {
+    setIsEditingTask(false);
+    setIsDeletingList(false);
+}
+
+  const onCancelList = () => {
+    setIsDeletingList(false);
+  }
+
   useEffect(() => {
     const getSystemLists =  () => {
       const listsData =  todoApi.getSystemLists();
@@ -189,6 +206,10 @@ function App() {
             selectedTask={selectedTask}
             selectedList={selectedList}
             keyword={keyword}
+            isEditingList={isEditingList}
+            setIsEditingList={setIsEditingList}
+            isDeletingList={isDeletingList}
+            setIsDeletingList={setIsDeletingList}
           />
           {isEditingTask &&
             <TaskDetails 
@@ -204,6 +225,28 @@ function App() {
               toggleTaskState={toggleTaskState}
             />
           } 
+          {   
+            isDeletingList &&
+            <DeleteItemModal 
+              title="Delete list"
+              description={`Are you sure you want to delete the "${selectedList.name}" list along with all related tasks?`}
+              itemId={selectedList.id}
+              deleteItem={deleteCustomList}
+              onDelete={onDeleteList}
+              onCancel={onCancelList}
+              isDeleting={isDeletingList}
+              setIsDeleting={setIsDeletingList}
+            />
+          }
+          {
+            isEditingList &&
+            <EditListModal 
+              isEditing={isEditingList} 
+              setIsEditingList={setIsEditingList}
+              list={selectedList}
+              editList={editCustomList}
+            />
+          }
         </>
       : ''
     }

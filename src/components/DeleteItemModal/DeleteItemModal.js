@@ -21,7 +21,7 @@ const DeleteItemModal = props => {
 
     return (
         // <div className='delete-item-modal'>
-            <Modal active={props.isDeletingTask}>
+            <Modal active={props.isDeleting}>
                 <div className='delete-item-modal__content'>
                     <h3 className='delete-item-modal__title'>
                         {props.title}

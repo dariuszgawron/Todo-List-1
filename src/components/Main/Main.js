@@ -16,6 +16,10 @@ const Main = props => {
             <TaskHeader 
                 activeList={props.activeList} 
                 selectedList={props.selectedList}
+                isEditingList={props.isEditingList}
+                setIsEditingList={props.setIsEditingList}
+                isDeletingList={props.isDeletingList}
+                setIsDeletingList={props.setIsDeletingList}
             />
             <TaskList 
                 activeList={props.activeList} 

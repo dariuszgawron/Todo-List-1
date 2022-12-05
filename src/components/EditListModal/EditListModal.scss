@@ -1,4 +1,4 @@
-.delete-item-modal {
+.edit-list-modal {
     
     &__content {
         display: flex;
@@ -35,7 +35,6 @@
         width: 100%;
         padding-top: .4rem;
         padding-bottom: .4rem;
-        // padding: 1.5rem auto;
         background-color: var(--background-tertiary-color);
         color: var(--text-primary-color);
         border: 1px solid var(--border-primary-color);
@@ -46,8 +45,8 @@
             box-shadow: 0 0 5px 0 var(--shadow-primary-color);
         }
 
-        &--warning {
-            background-color: rgb(255, 1, 1);
+        &--success {
+            background-color: rgb(92, 218, 3);
             color: var(--text-color-light);
         }
     }
