@@ -17,7 +17,7 @@ const SearchBar = props => {
 
     return (
         <form className="search-bar" id="search-bar" onSubmit={handleSubmit}>
-            <input className="search-bar__input" type="text" placeholder="Search" value={keyword} onChange={handleChange} /> 
+            <input className="search-bar__input" type="search" placeholder="Search" value={keyword} onChange={handleChange} /> 
         </form>
     )
 };

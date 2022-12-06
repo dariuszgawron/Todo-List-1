@@ -34,8 +34,8 @@ const EditListModal = props => {
                     {props.title}
                 </h3>
                 <p className='edit-list-modal__description'>
-                    <div>
-                        <input type="text" value={name} onChange={handleNameChange} />
+                    <div className="edit-list-modal-form">
+                        <input className="edit-list-modal-form__input" type="text" value={name} onChange={handleNameChange} />
                     </div>
                 </p>
                 <div className='edit-list-modal__buttons'>

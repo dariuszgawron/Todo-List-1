@@ -19,7 +19,7 @@ const CategoryItem = props => {
         <li className={`category-item ${categoryClass}`} onClick={handleClick}>
             <div className="category-item__content">
                 <h3 className="category-item__title">
-                    <i className={`category-item__icon ${props.list.icon || 'fa-solid fa-bars'}`}></i>
+                    <i className={`category-item__icon ${props.list.icon || 'fa-solid fa-list'}`}></i>
                     {props.list.name}
                 </h3>
                 <div className="category-item__counter">

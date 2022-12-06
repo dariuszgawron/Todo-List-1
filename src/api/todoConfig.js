@@ -2,7 +2,7 @@ export const systemLists = [
     {
         id: 'system_all',
         name: 'Tasks',
-        icon: 'fa-solid fa-list',
+        icon: 'fa-solid fa-house-chimney',
         filter: () => true,
         sort: (firstTask, secondTask) => (firstTask.name).localeCompare(secondTask.name),
         default: true

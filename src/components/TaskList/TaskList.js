@@ -16,7 +16,6 @@ const TaskList = (props) => {
     const keywordFilter = (props.keyword !== '') 
         ? (task => task.name.includes(props.keyword)) 
         : () => true;
-    // console.log(keywordFilter);
     return (
         <div className='task-list'>
             <ul className='task-list__content'>

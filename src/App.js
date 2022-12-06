@@ -32,8 +32,8 @@ function App() {
   const addCustomList = (listName) => {
     const newCustomList = {
       id: `list-${nanoid()}`, 
-      name: listName, 
-      icon: 'fa-solid fa-bars',
+      name: createListTitle(customLists, listName), 
+      icon: 'fa-solid fa-list',
       timeStamp: Date.now()
     };
     const modifiedCustomLists = [...customLists, newCustomList];
@@ -49,6 +49,11 @@ function App() {
     });
     setCustomLists(modifiedCustomLists);
     localStorage.setItem('todo-lists', JSON.stringify(modifiedCustomLists));
+    if(selectedList.id === listId) {
+      const selected = modifiedCustomLists.find(list => list.id === listId);
+      setSelectedList(selected);
+      localStorage.setItem('todo-selectedList', JSON.stringify(selected))
+    }
   };
   const deleteCustomList = listId => {
     const filteredCustomLists = customLists.filter(customList => customList.id !== listId);
@@ -61,21 +66,35 @@ function App() {
     localStorage.setItem('todo-selectedList', JSON.stringify(systemLists[0]));
   };
   const toggleList = listId => {
-    // const selectedList = ((listId.includes('system_')) ? systemLists : customLists).find(list => list.id === listId);
     const selectedList = [...systemLists, ...customLists].find(list => list.id === listId);
-    console.log(systemLists);
     setSelectedList(selectedList);
     localStorage.setItem('todo-selectedList', JSON.stringify(selectedList));
     setSelectedTask(null);
     setIsEditingTask(false);
     setIsDeletingTask(false);
   }
+  const createListTitle = (lists, listName) => {
+    let availableTitle = listName;
+    let exist = lists.map(list => list.name).indexOf(availableTitle);
+    console.log(exist);
+    let index = 1;
+    while(exist!==-1) {
+      availableTitle = `${listName} (${index++})`;
+      exist = lists.map(list => list.name).indexOf(availableTitle);
+    }
+    return availableTitle;
+  }
 
   // Tasks
   const addTask = (taskName, taskDate = '', taskRemind = '', taskRepeat = '') => {
+    const currentList = 
+      (systemLists.find(systemList => systemList.id === selectedList.id)!==undefined)
+      ? systemLists[0]
+      : selectedList;
+
     const newTask = {
       id: `task-${nanoid()}`, 
-      listId: selectedList.id,
+      listId: currentList.id,
       name: taskName, 
       date: taskDate,
       remind: taskRemind,
@@ -116,8 +135,6 @@ function App() {
   };
   const toggleTask = taskId => {
     const selected = tasks.find(task => task.id === taskId);
-    console.log(selected);
-    console.log(selectedTask);
     if((selectedTask && (selectedTask.id !== selected.id)) || selectedTask === null) {
       setSelectedTask(null);
       setSelectedTask(selected);
@@ -140,7 +157,7 @@ function App() {
   }
 
   useEffect(() => {
-    const getSystemLists =  () => {
+    const getSystemLists = () => {
       const listsData =  todoApi.getSystemLists();
       setSystemLists(listsData);
     }
@@ -161,7 +178,6 @@ function App() {
   useEffect(() => {
     const getSelectedList = () => {
       const selected = todoApi.getSelectedList();
-      console.log(systemLists);
       if(!selected) 
         setSelectedList(systemLists[0]);
       else
@@ -241,6 +257,7 @@ function App() {
           {
             isEditingList &&
             <EditListModal 
+              title="Edit list"
               isEditing={isEditingList} 
               setIsEditingList={setIsEditingList}
               list={selectedList}

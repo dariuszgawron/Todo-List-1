@@ -19,8 +19,11 @@
     }
 
     &__description {
-        min-height: 100px;
+        margin-bottom: .6rem;
+        min-height: 60px;
         font-size: var(--font-size-5);
+        display: flex;
+        align-items: center;
     }
 
     &__buttons {
@@ -49,5 +52,14 @@
             background-color: rgb(92, 218, 3);
             color: var(--text-color-light);
         }
+    }
+}
+
+.edit-list-modal-form {
+
+    &__input {
+        padding: .3rem .5rem;
+        font-size: var(--font-size-5);
+        border-radius: .4rem;
     }
 }
