@@ -150,7 +150,7 @@ function App() {
   const onDeleteList = () => {
     setIsEditingTask(false);
     setIsDeletingList(false);
-}
+  }
 
   const onCancelList = () => {
     setIsDeletingList(false);
@@ -158,8 +158,7 @@ function App() {
 
   useEffect(() => {
     const getSystemLists = () => {
-      const listsData =  todoApi.getSystemLists();
-      setSystemLists(listsData);
+      setSystemLists(todoApi.getSystemLists());
     }
     const getCustomLists = async () => {
       const listsData = await todoApi.getCustomLists();

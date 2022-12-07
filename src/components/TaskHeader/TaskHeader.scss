@@ -12,6 +12,7 @@
     backdrop-filter: blur(5px);
     color: var(--text-color-light);
     box-shadow: 0 0 20px rgba(159, 179, 217, 0.8);
+    z-index: 50;
 
     &__container {
         margin: 0 auto;

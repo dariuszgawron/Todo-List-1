@@ -33,11 +33,11 @@ const EditListModal = props => {
                 <h3 className='edit-list-modal__title'>
                     {props.title}
                 </h3>
-                <p className='edit-list-modal__description'>
-                    <div className="edit-list-modal-form">
+                <div className='edit-list-modal__description'>
+                    <form className="edit-list-modal-form">
                         <input className="edit-list-modal-form__input" type="text" value={name} onChange={handleNameChange} />
-                    </div>
-                </p>
+                    </form>
+                </div>
                 <div className='edit-list-modal__buttons'>
                     <button className='edit-list-modal__button edit-list-modal__button--success' onClick={handleSaveClick}>
                         Save

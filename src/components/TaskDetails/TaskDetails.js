@@ -5,6 +5,7 @@ import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 import './TaskDetails.scss';
 
 const TaskDetails = props => {
+    const [open, setOpen] = useState(false);
     const [taskName, setTaskName] = useState('');
     const [taskRemind, setTaskRemind] = useState('');
     const [taskDate, setTaskDate] = useState('');
@@ -19,6 +20,7 @@ const TaskDetails = props => {
     }
 
     useEffect(() => {
+        setOpen(props.isEditingTask);
         setTaskName(props.task.name);
         setTaskRemind(props.task.remind);
         setTaskDate(props.task.date);
@@ -26,7 +28,7 @@ const TaskDetails = props => {
         setTaskDescription(props.task.description);
         setTaskFavorite(props.task.favorite);
         setTaskCompleted(props.task.completed);
-    }, [props.task]);
+    }, [props.task, props.isEditingTask]);
 
     const handleCheckboxClick = () => {
         setTaskCompleted(!taskCompleted);
@@ -94,7 +96,7 @@ const TaskDetails = props => {
     }
 
     return (
-        <div className={`task-details ${props.isEditingTask ? 'task-details--active' : ''}`}>
+        <div className={`task-details ${open ? 'task-details--active' : ''}`}>
             <div className="task-details-close" onClick={handleCloseClick}>
                 <i className="task-details-close__icon fa-solid fa-xmark"></i>
             </div>

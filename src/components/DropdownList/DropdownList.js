@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Dropdown from "../Dropdown/Dropdown";
 
@@ -21,37 +21,38 @@ const DropdownList = props => {
         props.setIsDeletingList(true);
     }
 
+    const menuList = [{
+            title: 'Show completed tasks',
+            icon: 'fa-regular fa-circle-check',
+            onClick: handleChangeRange
+        }, {
+            title: 'Edit list',
+            icon: 'fa-solid fa-pen-to-square',
+            onClick: handleEditList
+        }, {
+            title: 'Delete list',
+            icon: 'fa-solid fa-trash-can',
+            onClick: handleDeleteList
+        }
+    ]
+
     return (
         <Dropdown 
             open={open}
             setOpen={setOpen}
             button={<i className="dropdown-button__icon fa-solid fa-ellipsis"></i>}
-            menu={[
-                <div className="dropdown-menu-item__content" onClick={handleChangeRange}>
-                    <div className="dropdown-menu-item__logo">
-                        <i className="dropdown-menu-item__icon fa-regular fa-circle-check"></i>
-                    </div>
-                    <div className="dropdown-menu-item__title">
-                        Show completed tasks
-                    </div>
-                </div>,
-                <div className="dropdown-menu-item__content" onClick={handleEditList}>
-                    <div className="dropdown-menu-item__logo">
-                        <i className="dropdown-menu-item__icon fa-solid fa-pen-to-square"></i>
-                    </div>
-                    <div className="dropdown-menu-item__title">
-                        Edit list
-                    </div>
-                </div>,
-                <div className="dropdown-menu-item__content" onClick={handleDeleteList}>
-                    <div className="dropdown-menu-item__logo">
-                        <i className="dropdown-menu-item__icon fa-solid fa-trash-can"></i>
-                    </div>
-                    <div className="dropdown-menu-item__title">
-                        Delete list
-                    </div>
-                </div>
-            ]}
+            menu={
+                menuList.map(menuItem => (
+                    <div className="dropdown-menu-item__content" onClick={menuItem.onClick}>
+                        <div className="dropdown-menu-item__logo">
+                            <i className={`dropdown-menu-item__icon ${menuItem.icon}`}></i>
+                        </div>
+                        <div className="dropdown-menu-item__title">
+                            {menuItem.title}
+                        </div>
+                 </div>
+                ))
+            }
         />
     )
 };

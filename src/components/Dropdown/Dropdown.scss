@@ -4,11 +4,17 @@
     &-button {
         padding: .2rem .5rem;
         border-radius: .3rem;
+        background-color: transparent;
+        color: var(--text-secondary-color);
         cursor: pointer;
 
         &:hover {
             background-color: var(--background-primary-color);
             color: var(--text-color-dark);
+        }
+
+        &--active {
+            background-color: var(--background-primary-color);
         }
     }
 
