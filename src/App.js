@@ -14,19 +14,21 @@ import EditListModal from './components/EditListModal/EditListModal';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [lists, setLists] = useState([]);
   const [systemLists, setSystemLists] = useState([]);
   const [customLists, setCustomLists] = useState([]);
-  const [tasks, setTasks] = useState([]);
-  const [activeList, setActiveList] = useState(null);
-  const [showDetails, setShowDetails] = useState(false);
-  const [keyword, setKeyword] = useState('');
-  const [filter, setFilter] = useState('');
-  const [selectedTask, setSelectedTask] = useState(null);
-  const [isEditingTask, setIsEditingTask] = useState(false);
-  const [isDeletingTask, setIsDeletingTask] = useState(false);
+  const [selectedList, setSelectedList] = useState(null);
+  const [selectedListId, setSelectedListId] = useState(null);
   const [isEditingList, setIsEditingList] = useState(false);
   const [isDeletingList, setIsDeletingList] = useState(false);
-  const [selectedList, setSelectedList] = useState(null);
+  const [tasks, setTasks] = useState([]);
+  const [selectedTask, setSelectedTask] = useState(null);
+  const [selectedTaskId, setSelectedTaskId] = useState(null);
+  const [isEditingTask, setIsEditingTask] = useState(false);
+  const [isDeletingTask, setIsDeletingTask] = useState(false);
+  // const [showDetails, setShowDetails] = useState(false);
+  const [keyword, setKeyword] = useState('');
+  const [filter, setFilter] = useState('');
 
   // Custom lists
   const addCustomList = (listName) => {
@@ -34,6 +36,9 @@ function App() {
       id: `list-${nanoid()}`, 
       name: createListTitle(customLists, listName), 
       icon: 'fa-solid fa-list',
+      filter: null,
+      sort: (firstTask, secondTask) => (firstTask.name).localeCompare(secondTask.name),
+      showCompletedTask: false,
       timeStamp: Date.now()
     };
     const modifiedCustomLists = [...customLists, newCustomList];
@@ -61,6 +66,7 @@ function App() {
     setTasks(filteredTasks);
     setCustomLists(filteredCustomLists);
     setSelectedList(systemLists[0]);
+    setSelectedListId(systemLists[0].id);
     localStorage.setItem('todo-tasks', JSON.stringify(filteredTasks));
     localStorage.setItem('todo-lists', JSON.stringify(filteredCustomLists));
     localStorage.setItem('todo-selectedList', JSON.stringify(systemLists[0]));
@@ -68,11 +74,22 @@ function App() {
   const toggleList = listId => {
     const selectedList = [...systemLists, ...customLists].find(list => list.id === listId);
     setSelectedList(selectedList);
+    setSelectedListId(selectedList.id);
     localStorage.setItem('todo-selectedList', JSON.stringify(selectedList));
-    setSelectedTask(null);
+    setSelectedTaskId(null);
     setIsEditingTask(false);
     setIsDeletingTask(false);
   }
+  // const toggleListState = (listId, property) => {
+  //   const modifiedLists = tasks.map(task => {
+  //     if(task.id === taskId) {
+  //       return {...task, [property]: !task[property]}
+  //     }
+  //     return task;
+  //   });
+  //   setTasks(modifiedLists);
+  //   localStorage.setItem('todo-tasks', JSON.stringify(modifiedTasks));
+  // }
   const createListTitle = (lists, listName) => {
     let availableTitle = listName;
     let exist = lists.map(list => list.name).indexOf(availableTitle);
@@ -135,14 +152,13 @@ function App() {
   };
   const toggleTask = taskId => {
     const selected = tasks.find(task => task.id === taskId);
-    if((selectedTask && (selectedTask.id !== selected.id)) || selectedTask === null) {
-      setSelectedTask(null);
-      setSelectedTask(selected);
+    if((selectedTaskId && (selectedTaskId !== selected.id)) || selectedTaskId === null) {
       setIsEditingTask(true);
+      setSelectedTaskId(selected.id);
       setIsDeletingTask(false);
     } else {
       setIsEditingTask(false);
-      setSelectedTask(null);
+      setSelectedTaskId(null);
       setIsDeletingTask(false);
     }
   }
@@ -158,11 +174,14 @@ function App() {
 
   useEffect(() => {
     const getSystemLists = () => {
-      setSystemLists(todoApi.getSystemLists());
+      const listsData = todoApi.getSystemLists()
+      setSystemLists(listsData);
+      // setLists([...lists, {...listsData, system: true}]);
     }
     const getCustomLists = async () => {
       const listsData = await todoApi.getCustomLists();
       setCustomLists(listsData);
+      // setLists([...lists, {...listsData, system: false}]);
     };
     const getTasks = async () => {
       const tasksData = await todoApi.getCustomTasks();
@@ -177,16 +196,34 @@ function App() {
   useEffect(() => {
     const getSelectedList = () => {
       const selected = todoApi.getSelectedList();
-      if(!selected) 
+      if(!selected) {
         setSelectedList(systemLists[0]);
-      else
+        setSelectedListId(systemLists[0].id) 
+      } else {
         setSelectedList(selected);
+        setSelectedListId(selected.id);
+      }
     };
     if(systemLists.length > 0) {
       getSelectedList();
       setIsLoading(false);
     }
   }, [systemLists]);
+
+  useEffect(() => {
+    const activeList = selectedListId !== null
+      ? [...systemLists, ...customLists].find(list => list.id === selectedListId)
+      : undefined;
+    // (activeList !== undefined)
+    //   ? setSelectedList(activeList)
+    //   : setSelectedList(null);
+    const activeTask = selectedTaskId !== null 
+      ? tasks.find(task => task.id === selectedTaskId) 
+      : undefined;
+    (activeTask !== undefined)
+      ? setSelectedTask(activeTask)
+      : setSelectedTask(null);
+  }, [systemLists, customLists, selectedListId, tasks, selectedTaskId]);
 
   return (
     <div className='todo-app'>
@@ -196,7 +233,6 @@ function App() {
           <Sidenav 
             systemLists={systemLists} 
             customLists={customLists} 
-            activeList={activeList} 
             addCustomList={addCustomList} 
             editCustomList={editCustomList}
             deleteCustomList={deleteCustomList}
@@ -209,34 +245,33 @@ function App() {
           <Main 
             lists={[...systemLists,...customLists]}
             systemLists={systemLists}
-            tasks={tasks} 
-            activeList={activeList} 
+            selectedList={selectedList}
+            editCustomList={editCustomList}
+            isEditingList={isEditingList}
+            setIsEditingList={setIsEditingList}
+            deleteCustomList={deleteCustomList}
+            isDeletingList={isDeletingList}
+            setIsDeletingList={setIsDeletingList}
+            tasks={tasks}  
             addTask={addTask} 
             toggleTaskState={toggleTaskState}
             editTask={editTask}
             deleteTask={deleteTask}
-            editCustomList={editCustomList}
-            deleteCustomList={deleteCustomList}
             toggleTask={toggleTask}
             selectedTask={selectedTask}
-            selectedList={selectedList}
             keyword={keyword}
-            isEditingList={isEditingList}
-            setIsEditingList={setIsEditingList}
-            isDeletingList={isDeletingList}
-            setIsDeletingList={setIsDeletingList}
           />
-          {isEditingTask &&
+          {isEditingTask && selectedTask!==null &&
             <TaskDetails 
               task={selectedTask} 
               list={[...systemLists,...customLists].find(list => list.id === selectedTask.listId)}
+              editTask={editTask}
               isEditingTask={isEditingTask}
               setIsEditingTask={setIsEditingTask}
+              deleteTask={deleteTask}
               isDeletingTask={isDeletingTask}
               setIsDeletingTask={setIsDeletingTask}
               setSelectedTask={setSelectedTask}
-              editTask={editTask}
-              deleteTask={deleteTask}
               toggleTaskState={toggleTaskState}
             />
           } 
@@ -247,20 +282,20 @@ function App() {
               description={`Are you sure you want to delete the "${selectedList.name}" list along with all related tasks?`}
               itemId={selectedList.id}
               deleteItem={deleteCustomList}
-              onDelete={onDeleteList}
-              onCancel={onCancelList}
               isDeleting={isDeletingList}
               setIsDeleting={setIsDeletingList}
+              onDelete={onDeleteList}
+              onCancel={onCancelList}
             />
           }
           {
-            isEditingList &&
+            isEditingList && 
             <EditListModal 
               title="Edit list"
-              isEditing={isEditingList} 
-              setIsEditingList={setIsEditingList}
               list={selectedList}
               editList={editCustomList}
+              isEditing={isEditingList} 
+              setIsEditingList={setIsEditingList}
             />
           }
         </>

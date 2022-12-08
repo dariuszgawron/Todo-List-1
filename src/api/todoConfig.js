@@ -5,6 +5,7 @@ export const systemLists = [
         icon: 'fa-solid fa-house-chimney',
         filter: () => true,
         sort: (firstTask, secondTask) => (firstTask.name).localeCompare(secondTask.name),
+        showCompletedTask: false,
         default: true
     },
     {
@@ -13,6 +14,7 @@ export const systemLists = [
         icon: 'fa-regular fa-star',
         filter: (task) => task.favorite,
         sort: (firstTask, secondTask) => (firstTask.name).localeCompare(secondTask.name),
+        showCompletedTask: false,
         default: false
     },
     {
@@ -21,6 +23,7 @@ export const systemLists = [
         icon: 'fa-regular fa-calendar-check',
         filter: (task) => task.date,
         sort: (firstTask, secondTask) => secondTask.date - firstTask.date,
+        showCompletedTask: false,
         default: false
     }
 ];

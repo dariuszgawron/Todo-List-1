@@ -11,7 +11,6 @@ const Main = props => {
     return (
         <main className="main">
             <TaskHeader 
-                activeList={props.activeList} 
                 selectedList={props.selectedList}
                 isEditingList={props.isEditingList}
                 setIsEditingList={props.setIsEditingList}
@@ -19,15 +18,14 @@ const Main = props => {
                 setIsDeletingList={props.setIsDeletingList}
             />
             <TaskList 
-                activeList={props.activeList} 
                 tasks={props.tasks} 
                 selectedTask={props.selectedTask} 
                 toggleTask={props.toggleTask} 
-                selectedList={props.selectedList} 
+                toggleTaskState={props.toggleTaskState}
                 lists={props.lists} 
                 systemLists={props.systemLists}
+                selectedList={props.selectedList} 
                 keyword={props.keyword} 
-                toggleTaskState={props.toggleTaskState}
             />
             <TaskFooter addTask={props.addTask} />
             {/* <TaskDetails /> */}

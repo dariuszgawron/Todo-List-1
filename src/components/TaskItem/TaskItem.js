@@ -16,7 +16,7 @@ const TaskItem = props => {
 
     const handleCheckboxClick = e => {
         e.stopPropagation();
-        setChecked(!checked);
+        // setChecked(!checked);
         props.toggleTaskState(props.task.id, 'completed');
     }
 
@@ -55,7 +55,7 @@ const TaskItem = props => {
 
     useEffect(() => {
         setChecked(props.task.completed);
-    }, [props.task])
+    }, [props.task.completed])
 
     return (
         <li className={`task-item ${taskClass}`} onClick={handleTaskClick}>
