@@ -1,12 +1,13 @@
 import React from 'react';
 
 import DropdownList from '../DropdownList/DropdownList';
+import DropdownFilter from '../DropdownFilter/DropdownFilter';
 // import DeleteItemModal from '../DeleteItemModal/DeleteItemModal';
 
 import './TaskHeader.scss';
 
 const TaskHeader = (props) => {
-    const iconClass = props.selectedList.icon;
+    const iconClass = props.selectedList ? props.selectedList.icon : '';
 
     // const onDelete = () => {
     //     props.setIsEditingTask(false);
@@ -32,9 +33,14 @@ const TaskHeader = (props) => {
                     </div>
                 </div>
                 <div className='task-header__content'>
+                    <DropdownFilter
+
+                    />
                     <DropdownList 
+                        selectedList={props.selectedList}
                         setIsEditingList={props.setIsEditingList} 
                         setIsDeletingList={props.setIsDeletingList}
+                        toggleListState={props.toggleListState}
                     />
                 </div>
             </div>

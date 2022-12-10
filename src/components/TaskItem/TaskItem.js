@@ -71,7 +71,7 @@ const TaskItem = props => {
                     {
                         props.list !== ''
                         ?   <span className="task-item__options-item">
-                                {props.list.name}
+                                {props.list && props.list.name}
                             </span>
                         :   ''
                     }           

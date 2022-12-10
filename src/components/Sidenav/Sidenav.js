@@ -12,8 +12,7 @@ const Sidenav = props => {
             <div className="sidenav" id="sidenav">
                 <SidenavHeader setKeyword={props.setKeyword} />
                 <SidenavContent 
-                    systemLists={props.systemLists} 
-                    customLists={props.customLists} 
+                    lists={props.lists}
                     selectedList={props.selectedList} 
                     toggleList={props.toggleList} 
                     tasks={props.tasks}

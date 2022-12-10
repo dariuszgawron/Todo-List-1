@@ -16,14 +16,15 @@ const Main = props => {
                 setIsEditingList={props.setIsEditingList}
                 isDeletingList={props.isDeletingList}
                 setIsDeletingList={props.setIsDeletingList}
+                toggleListState={props.toggleListState}
             />
             <TaskList 
                 tasks={props.tasks} 
                 selectedTask={props.selectedTask} 
                 toggleTask={props.toggleTask} 
                 toggleTaskState={props.toggleTaskState}
-                lists={props.lists} 
-                systemLists={props.systemLists}
+                lists={props.lists.filter(list => list.system)} 
+                // systemLists={props.systemLists}
                 selectedList={props.selectedList} 
                 keyword={props.keyword} 
             />

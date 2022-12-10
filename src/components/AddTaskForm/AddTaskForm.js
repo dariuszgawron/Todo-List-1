@@ -27,7 +27,6 @@ const AddTaskForm = props => {
         } else {
             setActiveOption(option);
         }
-        console.log(activeOption);
     }
     const handleNameFocus = e => {
         setActiveOption('');

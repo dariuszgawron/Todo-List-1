@@ -9,6 +9,7 @@ const DropdownList = props => {
 
     const handleChangeRange = () => {
         setOpen(false);
+        props.toggleListState(props.selectedList.id, 'showCompletedTask');
     }
 
     const handleEditList = () => {
@@ -22,17 +23,20 @@ const DropdownList = props => {
     }
 
     const menuList = [{
-            title: 'Show completed tasks',
+            title: (props.selectedList.showCompletedTask) ? 'Hide completed tasks' : 'Show completed tasks',
             icon: 'fa-regular fa-circle-check',
-            onClick: handleChangeRange
+            onClick: handleChangeRange,
+            system: true
         }, {
             title: 'Edit list',
             icon: 'fa-solid fa-pen-to-square',
-            onClick: handleEditList
+            onClick: handleEditList,
+            system: false
         }, {
             title: 'Delete list',
             icon: 'fa-solid fa-trash-can',
-            onClick: handleDeleteList
+            onClick: handleDeleteList,
+            system: false
         }
     ]
 
@@ -42,15 +46,17 @@ const DropdownList = props => {
             setOpen={setOpen}
             button={<i className="dropdown-button__icon fa-solid fa-ellipsis"></i>}
             menu={
-                menuList.map(menuItem => (
-                    <div className="dropdown-menu-item__content" onClick={menuItem.onClick}>
-                        <div className="dropdown-menu-item__logo">
-                            <i className={`dropdown-menu-item__icon ${menuItem.icon}`}></i>
+                menuList
+                    .filter(menuItem => (!props.selectedList.system || menuItem.system))
+                    .map(menuItem => (
+                        <div className="dropdown-menu-item__content" onClick={menuItem.onClick}>
+                            <div className="dropdown-menu-item__logo">
+                                <i className={`dropdown-menu-item__icon ${menuItem.icon}`}></i>
+                            </div>
+                            <div className="dropdown-menu-item__title">
+                                {menuItem.title}
+                            </div>
                         </div>
-                        <div className="dropdown-menu-item__title">
-                            {menuItem.title}
-                        </div>
-                 </div>
                 ))
             }
         />
