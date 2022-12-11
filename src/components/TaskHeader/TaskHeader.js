@@ -34,7 +34,8 @@ const TaskHeader = (props) => {
                 </div>
                 <div className='task-header__content'>
                     <DropdownFilter
-
+                        selectedList={props.selectedList}
+                        toggleListState={props.toggleListState}
                     />
                     <DropdownList 
                         selectedList={props.selectedList}

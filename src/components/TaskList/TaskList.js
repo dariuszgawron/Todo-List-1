@@ -3,6 +3,7 @@ import React from 'react';
 import './TaskList.scss';
 
 import TaskItem from '../TaskItem/TaskItem';
+import { sortOptions } from '../../api/todoConfig';
 
 const TaskList = (props) => {
     // const isSystemList = (props.selectedList && props.systemLists.find(list => list.id === props.selectedList.id));
@@ -12,9 +13,15 @@ const TaskList = (props) => {
     const filter = isSystemList 
         ? selectedSystemList.filter 
         : (task) => task.listId === props.selectedList.id;
-    const sort = isSystemList 
-        ? selectedSystemList.sort 
-        : (firstTask, secondTask) => firstTask.name.localeCompare(secondTask.name); 
+    // const sort = isSystemList 
+    //     ? selectedSystemList.sort 
+    //     : (firstTask, secondTask) => firstTask.name.localeCompare(secondTask.name); 
+    console.log(props.selectedList.sort);
+    let sort = sortOptions.find(sortOption => sortOption.id === props.selectedList.sort).sort;
+    // console.log(sort);
+    // if(sort!==undefined) {
+    //     sort.sort
+    // }
     const keywordFilter = (props.keyword !== '') 
         ? (task => task.name.includes(props.keyword)) 
         : () => true;

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid'
 
 import todoApi from './api/todoApi';
+import { sortOptions } from './api/todoConfig';
 
 import Sidenav from './components/Sidenav/Sidenav';
 import Main from './components/Main/Main';
@@ -35,7 +36,8 @@ function App() {
       name: createListTitle(lists, listName), 
       icon: 'fa-solid fa-list',
       filter: null,
-      sort: (firstTask, secondTask) => (firstTask.name).localeCompare(secondTask.name),
+      // sort: (firstTask, secondTask) => (firstTask.name).localeCompare(secondTask.name),
+      sort: sortOptions[0].id,
       showCompletedTask: false,
       timeStamp: Date.now()
     };
