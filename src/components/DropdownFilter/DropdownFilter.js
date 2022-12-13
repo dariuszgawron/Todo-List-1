@@ -9,35 +9,9 @@ const DropdownFilter = props => {
     const [open, setOpen] = useState(false);
 
     const handleClick = (sortOption) => {
-        props.toggleListState(props.selectedList, sortOption);
+        setOpen(false);
+        props.editListDetails(props.selectedList.id, 'sort', sortOption);
     }
-
-    // const menuList = [{
-    //     title: 'Alphabetically',
-    //     icon: 'fa-solid fa-arrow-down-a-z',
-    //     value: '',
-    // }, {
-    //     title: 'Alphabetically',
-    //     icon: 'fa-solid fa-arrow-up-a-z',
-    //     value: '',
-    // }, {
-    //     title: 'Creation date',
-    //     icon: 'fa-solid fa-arrow-down-1-9',
-    //     value: '',
-    // }, {
-    //     title: 'Creation date',
-    //     icon: 'fa-solid fa-arrow-up-1-9',
-    //     value: '',
-    // }, {
-    //     title: 'Importance',
-    //     icon: 'fa-solid fa-arrow-down-short-wide',
-    //     value: '',
-    // }, {
-    //     title: 'Importance',
-    //     icon: 'fa-solid fa-arrow-up-short-wide',
-    //     value: '',
-    // }
-// ]
 
     return (
         <Dropdown 
@@ -47,7 +21,7 @@ const DropdownFilter = props => {
             menu={
                 sortOptions
                     .map(menuItem => (
-                        <div className="dropdown-menu-item__content" onClick={() => handleClick(menuItem.id)}>
+                        <div className={`dropdown-menu-item__content ${props.selectedList.sort===menuItem.id ? 'dropdown-menu-item__content--active' : ''}`} onClick={() => handleClick(menuItem.id)}>
                             <div className="dropdown-menu-item__logo">
                                 <i className={`dropdown-menu-item__icon ${menuItem.icon}`}></i>
                             </div>

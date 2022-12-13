@@ -60,6 +60,16 @@ function App() {
       localStorage.setItem('todo-selectedList', JSON.stringify(selected))
     }
   };
+  const editListDetails = (listId, property, value) => {
+    const modifiedLists = lists.map(list => {
+      if(list.id===listId) {
+        return {...list, [property]: value}
+      }
+      return list;
+    });
+    setLists(modifiedLists);
+    localStorage.setItem('todo-lists', JSON.stringify(modifiedLists));
+  }
   const deleteList = listId => {
     const filteredLists = lists.filter(list => list.id !== listId);
     const filteredTasks = tasks.filter(task => task.listId !== listId);
@@ -236,6 +246,7 @@ function App() {
             lists={lists}
             // systemLists={systemLists}
             selectedList={selectedList}
+            editListDetails={editListDetails}
             editCustomList={editList}
             isEditingList={isEditingList}
             setIsEditingList={setIsEditingList}

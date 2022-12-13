@@ -5,7 +5,7 @@ import './TaskItem.scss';
 const TaskItem = props => {
     const [checked, setChecked] = useState(false);
     const taskClass = props.selectedTask && (props.selectedTask.id === props.task.id) ? 'task-item--selected' : '';
-    const isChecked = props.task.checked ? 'checked' : '';
+    // const isChecked = props.task.checked ? 'checked' : '';
     const favoriteIconClass = props.task.favorite
         ? 'task-item__favorite-icon--fill fa-solid fa-star'
         : 'task-item__favorite-icon--empty fa-regular fa-star';
@@ -16,13 +16,13 @@ const TaskItem = props => {
 
     const handleCheckboxClick = e => {
         e.stopPropagation();
-        // setChecked(!checked);
         props.toggleTaskState(props.task.id, 'completed');
     }
 
     const handleFavoriteClick = e => {
         e.stopPropagation();
-        props.toggleTaskState(props.task.id, 'favorite');
+        // props.toggleTaskState(props.task.id, 'favorite');
+        props.editTask(props.task.id, 'favorite', !props.task.favorite)
     }
 
     const getRemainingTime = (date) => {

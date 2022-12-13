@@ -1,26 +1,26 @@
 export const sortOptions = [{
         id: 'alphabeticallyASC',
-        title: 'Alphabetically',
+        title: 'Name: A-Z',
         icon: 'fa-solid fa-arrow-down-a-z',
         value: (firstTask, secondTask) => (firstTask.name).localeCompare(secondTask.name),
     }, {
         id: 'alphabeticallyDESC',
-        title: 'Alphabetically',
+        title: 'Name: Z-A',
         icon: 'fa-solid fa-arrow-up-a-z',
         value: (firstTask, secondTask) => -1 * (firstTask.name).localeCompare(secondTask.name),
     }, {
         id: 'creationDateASC',
-        title: 'Creation date',
+        title: 'Creation date: latest',
         icon: 'fa-solid fa-arrow-down-1-9',
         value: (firstTask, secondTask) => new Date(firstTask.date) - new Date(secondTask.date)
     }, {
         id: 'creationDateDESC',
-        title: 'Creation date',
+        title: 'Creation date: oldest',
         icon: 'fa-solid fa-arrow-up-1-9',
         value: (firstTask, secondTask) => new Date(secondTask.date) - new Date(firstTask.date)
     }, {
         id: 'importanceASC',
-        title: 'Importance',
+        title: 'Importance: most important',
         icon: 'fa-solid fa-arrow-down-short-wide',
         value: (firstTask, secondTask) => 
             (firstTask.favorite === secondTask.favorite) 
@@ -30,7 +30,7 @@ export const sortOptions = [{
                 :   1
     }, {
         id: 'importanceDESC',
-        title: 'Importance',
+        title: 'Importance: least important',
         icon: 'fa-solid fa-arrow-up-short-wide',
         value: (firstTask, secondTask) => 
             (firstTask.favorite === secondTask.favorite) 

@@ -6,22 +6,12 @@ import TaskItem from '../TaskItem/TaskItem';
 import { sortOptions } from '../../api/todoConfig';
 
 const TaskList = (props) => {
-    // const isSystemList = (props.selectedList && props.systemLists.find(list => list.id === props.selectedList.id));
-    // const selectedSystemList = (isSystemList) ? props.systemLists.find(list => list.id === props.selectedList.id) : null;
-    const isSystemList = (props.selectedList && props.lists.find(list => list.id === props.selectedList.id));
-    const selectedSystemList = (isSystemList) ? props.lists.find(list => list.id === props.selectedList.id) : null;
+    const isSystemList = (props.selectedList && props.selectedList.system);
+    const systemList = (isSystemList) ? props.lists.find(list => list.id === props.selectedList.id) : null;
     const filter = isSystemList 
-        ? selectedSystemList.filter 
+        ? systemList.filter
         : (task) => task.listId === props.selectedList.id;
-    // const sort = isSystemList 
-    //     ? selectedSystemList.sort 
-    //     : (firstTask, secondTask) => firstTask.name.localeCompare(secondTask.name); 
-    console.log(props.selectedList.sort);
-    let sort = sortOptions.find(sortOption => sortOption.id === props.selectedList.sort).sort;
-    // console.log(sort);
-    // if(sort!==undefined) {
-    //     sort.sort
-    // }
+    const sort = sortOptions.find(sortOption => sortOption.id === props.selectedList.sort).value;
     const keywordFilter = (props.keyword !== '') 
         ? (task => task.name.includes(props.keyword)) 
         : () => true;
@@ -44,6 +34,7 @@ const TaskList = (props) => {
                             selectedTask={props.selectedTask} 
                             toggleTask={props.toggleTask} 
                             toggleTaskState={props.toggleTaskState}
+                            editTask={props.editTask}
                             key={index} />
                     })
                 }

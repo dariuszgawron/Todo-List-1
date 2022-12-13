@@ -31,7 +31,6 @@ const TaskDetails = props => {
     }, [props.task, props.isEditingTask]);
 
     const handleCheckboxClick = () => {
-        // setTaskCompleted(!taskCompleted);
         props.toggleTaskState(props.task.id, 'completed');
     }
 
@@ -40,8 +39,8 @@ const TaskDetails = props => {
         : 'task-details__icon--empty fa-regular fa-star';
 
     const handleFavoriteClick = e => {
-        // setTaskFavorite(!taskFavorite);
-        props.toggleTaskState(props.task.id, 'favorite');
+        // props.toggleTaskState(props.task.id, 'favorite');
+        props.editTask(props.task.id, 'favorite', !props.task.favorite);
     }
 
     const handleDeleteClick = () => {

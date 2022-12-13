@@ -36,6 +36,7 @@ const TaskHeader = (props) => {
                     <DropdownFilter
                         selectedList={props.selectedList}
                         toggleListState={props.toggleListState}
+                        editListDetails={props.editListDetails}
                     />
                     <DropdownList 
                         selectedList={props.selectedList}
