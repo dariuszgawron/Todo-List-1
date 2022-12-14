@@ -15,8 +15,7 @@ const TaskDetails = props => {
     const [taskCompleted, setTaskCompleted] = useState(false);
 
     const handleCloseClick = () => {
-        props.setIsEditingTask(false);
-        props.setSelectedTask(null);
+        props.hideTaskDetails();
     }
 
     useEffect(() => {
@@ -95,7 +94,7 @@ const TaskDetails = props => {
     }
 
     return (
-        <div className={`task-details ${open ? 'task-details--active' : ''}`}>
+        <div className={`task-details ${open ? 'task-details--active' : ''}`} ref={props.taskDetailsRef}>
             <div className="task-details-close" onClick={handleCloseClick}>
                 <i className="task-details-close__icon fa-solid fa-xmark"></i>
             </div>
@@ -138,7 +137,7 @@ const TaskDetails = props => {
                             <i className="task-details__icon fa-solid fa-arrows-rotate"></i>
                         </div>
                         <div className="task-details__value">
-                            <select className="task-details__repeat" name="repeat" defaultValue={taskRepeat} onChange={handleRepeatChange}>
+                            <select className="task-details__repeat" name="repeat" value={taskRepeat} onChange={handleRepeatChange}>
                                 <option value="">Repeat</option>
                                 <option value="daily">Daily</option>
                                 <option value="weekly">Weekly</option>

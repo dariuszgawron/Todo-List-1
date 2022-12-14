@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { nanoid } from 'nanoid'
 
 import todoApi from './api/todoApi';
@@ -28,6 +28,7 @@ function App() {
   // const [showDetails, setShowDetails] = useState(false);
   const [keyword, setKeyword] = useState('');
   const [filter, setFilter] = useState('');
+  const taskDetailsRef = useRef(null);
 
   // Custom lists
   const addList = (listName) => {
@@ -86,9 +87,10 @@ function App() {
     setSelectedList(selectedList);
     setSelectedListId(selectedList.id);
     localStorage.setItem('todo-selectedList', JSON.stringify(selectedList));
-    setSelectedTaskId(null);
-    setIsEditingTask(false);
-    setIsDeletingTask(false);
+    // setSelectedTaskId(null);
+    // setIsEditingTask(false);
+    hideTaskDetails();
+    // setIsDeletingTask(false);
   }
   const toggleListState = (listId, property) => {
     const modifiedLists = lists.map(list => {
@@ -135,14 +137,37 @@ function App() {
     localStorage.setItem('todo-tasks', JSON.stringify(modifiedTasks));
   };
   const toggleTaskState = (taskId, property='completed') => {
-    const modifiedTasks = tasks.map(task => {
+    let modifiedTasks = tasks.map(task => {
       if(task.id === taskId) {
         return {...task, [property]: !task[property]}
       }
       return task;
     });
+    
+    const modifiedTask = modifiedTasks.find(task => task.id === taskId);
+    if(modifiedTask && modifiedTask[property] === true) {
+      const nextDate = getNextDate(modifiedTask.date, modifiedTask.repeat);
+      const exist = modifiedTasks.find(task => task.name === modifiedTask.name && task.timeStamp === modifiedTask.timeStamp && modifiedTask.date === nextDate);
+      // console.log(exist);
+      if(exist === undefined) {
+        modifiedTasks = [...modifiedTasks, {...modifiedTask, id: `task-${nanoid()}`, date: nextDate, completed: false}];
+      }
+    }
     setTasks(modifiedTasks);
     localStorage.setItem('todo-tasks', JSON.stringify(modifiedTasks));
+  }
+  const getNextDate = (date, repeat) => {
+    let newDate = new Date(date);
+    if (repeat === 'daily') {
+      newDate.setDate(newDate.getDate() + 1);
+    } else if (repeat === 'weekly') {
+      newDate.setDate(newDate.getDate() + 7)
+    } else if (repeat === 'monthly') {
+      newDate.setMonth(newDate.getMonth() + 1)
+    } else if (repeat === 'annually') {
+      newDate.setFullYear(newDate.getFullYear + 1)
+    }
+    return `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getDate()}`;
   }
   const editTask = (taskId, property, value) => {
     const modifiedTasks = tasks.map(task => {
@@ -166,8 +191,7 @@ function App() {
       setSelectedTaskId(selected.id);
       setIsDeletingTask(false);
     } else {
-      setIsEditingTask(false);
-      setSelectedTaskId(null);
+      hideTaskDetails();
       setIsDeletingTask(false);
     }
   }
@@ -179,6 +203,15 @@ function App() {
 
   const onCancelList = () => {
     setIsDeletingList(false);
+  }
+
+  const hideTaskDetails = () => {
+    taskDetailsRef.current && taskDetailsRef.current.classList.remove('task-details--active');
+    setTimeout(() => {
+        setIsEditingTask(false);
+        setSelectedTask(null);
+        setSelectedTaskId(null);
+    }, 300);
   }
 
   useEffect(() => {
@@ -214,7 +247,6 @@ function App() {
     const activeList = selectedListId !== null
       ? lists.find(list => list.id === selectedListId)
       : undefined;
-    console.log(activeList);
     (activeList !== undefined)
       ? setSelectedList(activeList)
       : setSelectedList(null);
@@ -275,6 +307,8 @@ function App() {
               setIsDeletingTask={setIsDeletingTask}
               setSelectedTask={setSelectedTask}
               toggleTaskState={toggleTaskState}
+              taskDetailsRef={taskDetailsRef}
+              hideTaskDetails={hideTaskDetails}
             />
           } 
           {   

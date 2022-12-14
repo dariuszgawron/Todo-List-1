@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Modal from "../Modal/Modal";
 
@@ -7,6 +7,7 @@ import './EditListModal.scss';
 const EditListModal = props => {
     const [name, setName] = useState('');
     const [icon, setIcon] = useState('');
+    const editListModalRef = useRef(null);
 
     const handleNameChange = e => {
         setName(e.target.value);
@@ -15,11 +16,18 @@ const EditListModal = props => {
         setIcon(e.target.value);
     }
     const handleSaveClick = () => {
-        props.editList(props.list.id, name, icon);
-        props.setIsEditingList(false);
+        editListModalRef.current.classList.remove('modal--active');
+        setTimeout(() => {
+            props.editList(props.list.id, name, icon);
+            props.setIsEditingList(false);
+        }, 300);
+        
     };
     const handleCancelClick = () => {
-        props.setIsEditingList(false);
+        editListModalRef.current.classList.remove('modal--active');
+        setTimeout(() => {
+            props.setIsEditingList(false);
+        }, 300);
     };
 
     useEffect(() => {
@@ -28,7 +36,7 @@ const EditListModal = props => {
     }, [props.list])
     
     return (
-        <Modal active={props.isEditing}>
+        <Modal active={props.isEditing} modalRef={editListModalRef}>
             <div className='edit-list-modal__content'>
                 <h3 className='edit-list-modal__title'>
                     {props.title}
