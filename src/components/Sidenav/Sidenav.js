@@ -8,9 +8,12 @@ import SidenavFooter from "../SidenavFooter/SidenavFooter";
 
 const Sidenav = props => {
     return (
-        <header className="header">
+        <header className="header" ref={props.sidenavMenuRef}>
             <div className="sidenav" id="sidenav">
-                <SidenavHeader setKeyword={props.setKeyword} />
+                <SidenavHeader 
+                    setKeyword={props.setKeyword} 
+                    sidenavMenuRef={props.sidenavMenuRef}
+                />
                 <SidenavContent 
                     lists={props.lists}
                     selectedList={props.selectedList} 

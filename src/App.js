@@ -29,6 +29,7 @@ function App() {
   const [keyword, setKeyword] = useState('');
   const [filter, setFilter] = useState('');
   const taskDetailsRef = useRef(null);
+  const sidenavMenuRef = useRef(null);
 
   // Custom lists
   const addList = (listName) => {
@@ -147,8 +148,7 @@ function App() {
     const modifiedTask = modifiedTasks.find(task => task.id === taskId);
     if(modifiedTask && modifiedTask[property] === true) {
       const nextDate = getNextDate(modifiedTask.date, modifiedTask.repeat);
-      const exist = modifiedTasks.find(task => task.name === modifiedTask.name && task.timeStamp === modifiedTask.timeStamp && modifiedTask.date === nextDate);
-      // console.log(exist);
+      const exist = modifiedTasks.find(task => task.name === modifiedTask.name && task.timeStamp === modifiedTask.timeStamp && task.date === nextDate);
       if(exist === undefined) {
         modifiedTasks = [...modifiedTasks, {...modifiedTask, id: `task-${nanoid()}`, date: nextDate, completed: false}];
       }
@@ -273,6 +273,7 @@ function App() {
             tasks={tasks} 
             keyword={keyword} 
             setKeyword={setKeyword}
+            sidenavMenuRef={sidenavMenuRef}
           />
           <Main 
             lists={lists}
@@ -294,6 +295,7 @@ function App() {
             toggleTaskState={toggleTaskState}
             deleteTask={deleteTask}
             keyword={keyword}
+            sidenavMenuRef={sidenavMenuRef}
           />
           {isEditingTask && selectedTask!==null &&
             <TaskDetails 

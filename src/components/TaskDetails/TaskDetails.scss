@@ -4,14 +4,30 @@
     display: grid;
     grid-template-rows: auto min-content;
     row-gap: .5rem;
-    position: relative;
     visibility: hidden;
     background-color: rgb(237, 241, 255);
     transition: .3s ease-out;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+    overflow: hidden;
+
+    @media screen and (min-width: 992px) {
+        position: relative;
+        z-index: 2;
+    }
 
     &--active {
-        width: 450px;
         visibility: visible;
+        width: 100%;
+
+        @media screen and (min-width: 480px) {
+            width: 300px;
+        }
+
+        @media screen and (min-width: 992px) {
+            width: 450px
+        }
     }
 
     &__content {

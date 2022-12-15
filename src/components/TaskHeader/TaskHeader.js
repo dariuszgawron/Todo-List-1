@@ -18,11 +18,15 @@ const TaskHeader = (props) => {
     //     props.setIsDeletingList(false);
     // }
 
+    const handleSidenavOpenClick = () => {
+        props.sidenavMenuRef.current.classList.add('header--active');
+    }
+
     return (
         <div className='task-header'>
             <div className='task-header__container'>
                 <div className='task-header__content'>
-                    <div className='task-header-menu'>
+                    <div className='task-header-menu' onClick={handleSidenavOpenClick}>
                         <i className='task-header-menu__icon fa-solid fa-bars'></i>
                     </div>
                     <div className='task-header-details'>

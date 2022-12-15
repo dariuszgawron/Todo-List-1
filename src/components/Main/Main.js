@@ -18,6 +18,7 @@ const Main = props => {
                 setIsDeletingList={props.setIsDeletingList}
                 toggleListState={props.toggleListState}
                 editListDetails={props.editListDetails}
+                sidenavMenuRef={props.sidenavMenuRef}
             />
             <TaskList 
                 tasks={props.tasks} 

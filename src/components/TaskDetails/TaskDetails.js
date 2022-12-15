@@ -85,7 +85,8 @@ const TaskDetails = props => {
     }
 
     const onDelete = () => {
-        props.setIsEditingTask(false);
+        // props.setIsEditingTask(false);
+        props.hideTaskDetails();
         props.setIsDeletingTask(false);
     }
 

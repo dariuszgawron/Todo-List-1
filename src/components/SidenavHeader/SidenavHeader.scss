@@ -1,0 +1,39 @@
+.sidenav-header {
+    position: relative;
+    padding-top: 50px;
+
+    @media screen and (min-width: 768px) {
+        padding-top: 0px;
+    }
+}
+
+.sidenav-header-close {
+    position: absolute;
+    top: 10px;
+    right: 13px;
+    width: 30px;
+    height: 30px;
+    padding: .3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size-4);
+    cursor: pointer;
+    border-radius: .3rem;
+
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+
+    &:hover {
+        background-color: var(--background-secondary-color);
+    }
+
+    &:hover .sidenav-header-close__icon {
+        transform: rotate(90deg);
+    }
+
+    &__icon {
+        transition: .3s ease-out;
+    }
+}

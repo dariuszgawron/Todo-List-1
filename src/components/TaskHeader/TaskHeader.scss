@@ -30,6 +30,20 @@
 }
 
 .task-header-menu {
+    padding: .4rem .5rem;
+    border-radius: .3rem;
+    background-color: transparent;
+    color: var(--text-secondary-color);
+    cursor: pointer;
+
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+
+    &:hover {
+        background-color: var(--background-primary-color);
+        color: var(--text-color-dark);
+    }
 
     &__icon {
 
