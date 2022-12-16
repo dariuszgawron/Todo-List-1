@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid'
 import todoApi from './api/todoApi';
 import { sortOptions } from './api/todoConfig';
 
+import Loader from './components/Loader/Loader';
 import Sidenav from './components/Sidenav/Sidenav';
 import Main from './components/Main/Main';
 import TaskDetails from './components/TaskDetails/TaskDetails';
@@ -30,6 +31,7 @@ function App() {
   const [filter, setFilter] = useState('');
   const taskDetailsRef = useRef(null);
   const sidenavMenuRef = useRef(null);
+  const loaderRef = useRef(null);
 
   // Custom lists
   const addList = (listName) => {
@@ -239,7 +241,12 @@ function App() {
     };
     if(lists.length > 0) {
       getSelectedList();
-      setIsLoading(false);
+      setTimeout(() => {
+        loaderRef.current && loaderRef.current.classList.remove('loader--active');
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 300);
+      }, 3000);
     }
   }, [lists]);
 
@@ -337,7 +344,10 @@ function App() {
             />
           }
         </>
-      : ''
+      : <Loader 
+          isLoading={isLoading} 
+          loaderRef={loaderRef}
+        />
     }
     </div>
   );

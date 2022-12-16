@@ -13,6 +13,7 @@ const SidenavContent = props => {
                     selectedList={props.selectedList} 
                     toggleList={props.toggleList} 
                     tasks={props.tasks}
+                    sidenavMenuRef={props.sidenavMenuRef}
                     type='system'
                 />
             </div>
@@ -23,6 +24,7 @@ const SidenavContent = props => {
                     selectedList={props.selectedList} 
                     toggleList={props.toggleList} 
                     tasks={props.tasks}
+                    sidenavMenuRef={props.sidenavMenuRef}
                     system='custom'
                 />
             </div>

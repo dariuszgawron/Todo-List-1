@@ -16,6 +16,7 @@ const CategoryList = props => {
                         tasks={props.tasks}
                         key={index} 
                         type={props.type}
+                        sidenavMenuRef={props.sidenavMenuRef}
                     />
                 })
             }

@@ -13,6 +13,7 @@ const SearchBar = props => {
     const handleSubmit = e => {
         e.preventDefault();
         props.setKeyword(keyword);
+        props.sidenavMenuRef.current.classList.remove('header--active');
     }
 
     return (

@@ -13,6 +13,7 @@ const CategoryItem = props => {
 
     const handleClick = () => {
         props.toggleList(props.list.id);
+        props.sidenavMenuRef.current.classList.remove('header--active');
     }
 
     return (

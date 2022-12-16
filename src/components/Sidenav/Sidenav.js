@@ -19,6 +19,7 @@ const Sidenav = props => {
                     selectedList={props.selectedList} 
                     toggleList={props.toggleList} 
                     tasks={props.tasks}
+                    sidenavMenuRef={props.sidenavMenuRef}
                 />
                 <SidenavFooter addCustomList={props.addCustomList} />
             </div>
