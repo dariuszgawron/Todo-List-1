@@ -33,3 +33,18 @@
         max-width: 800px;
     }
 }
+
+.task-list-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    color: var(--text-color-light);
+    height: 100%;
+
+    &__icon {
+        font-size: 5rem;
+    }
+}

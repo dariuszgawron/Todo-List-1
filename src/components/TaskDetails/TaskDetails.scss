@@ -14,7 +14,7 @@
 
     @media screen and (min-width: 992px) {
         position: relative;
-        z-index: 2;
+        // z-index: 100;
     }
 
     &--active {
@@ -26,7 +26,7 @@
         }
 
         @media screen and (min-width: 992px) {
-            width: 450px
+            width: 350px
         }
     }
 
@@ -147,13 +147,18 @@
 
     &__repeat {
         width: 100%;
-        padding: .5rem .2rem;
+        padding: .5rem 0;
         border: none;
         outline: none;
         border-radius: .1rem;
         appearance: none;
-        font-size: var(--font-size-6);
+        font-size: var(--font-size-5);
         cursor: pointer;
+
+        &:invalid,
+        & task-details__repeat-option[value=""] {
+            color: rgb(120, 120, 120);
+        }
     }
 
     &__description {
@@ -165,8 +170,8 @@
     &__footer {
         display: flex;
         align-items: center;
-        height: 35px;
-        padding: .5rem;
+        height: 40px;
+        padding: 1rem .5rem;
     }
 
     &__information {
@@ -203,16 +208,20 @@
 }
 
 .task-details-delete {
-    width: 30px;
+    width: 35px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: var(--font-size-5);
-    color: var(--text-tertiary-color);
+    font-size: var(--font-size-4);
+    border-radius: .5rem;
+    color: rgb(255, 65, 65);
     cursor: pointer;
+    transition: .3s ease-out;
 
     &:hover {
-        color: rgb(255, 65, 65);
+        background-color: var(--background-secondary-color);
+        color: rgb(249, 33, 33);
     }
 
     &__icon {

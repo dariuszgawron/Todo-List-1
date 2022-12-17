@@ -138,12 +138,12 @@ const TaskDetails = props => {
                             <i className="task-details__icon fa-solid fa-arrows-rotate"></i>
                         </div>
                         <div className="task-details__value">
-                            <select className="task-details__repeat" name="repeat" value={taskRepeat} onChange={handleRepeatChange}>
-                                <option value="">Repeat</option>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Weekly</option>
-                                <option value="montly">Montly</option>
-                                <option value="annually">Annually</option>
+                            <select className="task-details__repeat" name="repeat" value={taskRepeat} onChange={handleRepeatChange} required>
+                                <option className="task-details__repeat-option" value="">Repeat</option>
+                                <option className="task-details__repeat-option" value="daily">Daily</option>
+                                <option className="task-details__repeat-option" value="weekly">Weekly</option>
+                                <option className="task-details__repeat-option" value="montly">Montly</option>
+                                <option className="task-details__repeat-option" value="annually">Annually</option>
                             </select>
                         </div>
                     </div>

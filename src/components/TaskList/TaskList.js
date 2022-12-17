@@ -18,16 +18,19 @@ const TaskList = (props) => {
     const showSelected = (props.selectedList && props.selectedList.showCompletedTask)
         ? () => true
         : (task) => !task.completed;
+    const tasks = props.tasks
+        .filter(filter)
+        .filter(showSelected)
+        .filter(keywordFilter)
+        .sort(sort);
+    console.log(tasks.length);
     return (
         <div className='task-list'>
-            <ul className='task-list__content'>
+        {
+            (tasks.length>0)
+            ?   <ul className='task-list__content'>
                 {
-                    props.tasks
-                        .filter(filter)
-                        .filter(showSelected)
-                        .filter(keywordFilter)
-                        .sort(sort)
-                        .map((task, index) => {
+                    tasks.map((task, index) => {
                         return <TaskItem 
                             task={task} 
                             list={(isSystemList) ? props.lists.find(list => list.id === task.listId) : ''}
@@ -38,7 +41,14 @@ const TaskList = (props) => {
                             key={index} />
                     })
                 }
-            </ul>
+                </ul>
+            :   <div className='task-list-empty'>
+                    <i className="task-list-empty__icon fa-brands fa-optin-monster"></i>
+                    <h2 className='task-list-empty__title'>
+                        There is no data to display
+                    </h2>
+                </div>
+        }   
         </div>
     )
 };
