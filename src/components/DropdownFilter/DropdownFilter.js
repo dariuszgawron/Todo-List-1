@@ -18,6 +18,8 @@ const DropdownFilter = props => {
             open={open}
             setOpen={setOpen}
             button={<i className="dropdown-button__icon fa-solid fa-filter"></i>}
+            buttonClass="dropdown-button--transparent"
+            menuClass="dropdown-menu--right"
             menu={
                 sortOptions
                     .map(menuItem => (

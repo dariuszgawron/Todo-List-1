@@ -5,7 +5,8 @@ import './Dropdown.scss';
 const Dropdown = props => {
     const dropdownMenuRef = useRef(null);
 
-    const handleOpen = () => {
+    const handleOpen = (e) => {
+        e.preventDefault();
         props.setOpen(!props.open);
     }
 
@@ -25,12 +26,12 @@ const Dropdown = props => {
 
     return (
         <div className="dropdown">
-            <button className={`dropdown-button ${props.open ? 'dropdown-button--active' : ''}`} onClick={handleOpen}>
+            <button className={`dropdown-button ${props.buttonClass ? props.buttonClass : ''} ${props.open ? 'dropdown-button--active' : ''}`} onClick={handleOpen}>
                 {props.button}
             </button>
             { 
                 props.open 
-                ?   <ul className={`dropdown-menu ${props.open ? 'dropdown-menu--active' : ''}`} ref={dropdownMenuRef}>
+                ?   <ul className={`dropdown-menu ${props.menuClass ? props.menuClass : ''} ${props.open ? 'dropdown-menu--active' : ''}`} ref={dropdownMenuRef}>
                         {props.menu.map((menuItem, index) => (
                             <li className="dropdown-menu-item" key={index}>
                                 {menuItem}

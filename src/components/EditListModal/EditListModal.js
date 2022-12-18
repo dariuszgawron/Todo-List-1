@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import Modal from "../Modal/Modal";
+import DropdownListIcon from "../DropdownListIcon/DropdownListIcon";
 
 import './EditListModal.scss';
 
@@ -43,6 +44,10 @@ const EditListModal = props => {
                 </h3>
                 <div className='edit-list-modal__description'>
                     <form className="edit-list-modal-form" onSubmit={handleSaveClick}>
+                        <DropdownListIcon
+                            icon={icon}
+                            setIcon={setIcon}
+                        />
                         <input className="edit-list-modal-form__input" type="text" value={name} onChange={handleNameChange} required/>
                     </form>
                 </div>

@@ -73,6 +73,7 @@ const TaskDetails = props => {
     const handleDateBlur = e => {
         props.editTask(props.task.id, 'date', e.target.value);
         e.target.type='text';
+        
     }
     const handleDescriptionBlur = e => {
         props.editTask(props.task.id, 'description', e.target.value);

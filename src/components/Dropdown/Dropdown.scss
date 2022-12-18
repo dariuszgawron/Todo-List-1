@@ -2,19 +2,28 @@
     position: relative;
 
     &-button {
-        padding: .2rem .5rem;
+        padding: .4rem .5rem;
         border-radius: .3rem;
-        background-color: transparent;
+        background-color: rgb(255, 255, 255);
         color: var(--text-secondary-color);
         cursor: pointer;
 
-        &:hover {
+        &:hover.dropdown-button--transparent {
             background-color: var(--background-primary-color);
             color: var(--text-color-dark);
         }
 
-        &--active {
+        &--transparent {
+            background-color: transparent;
+        }
+
+        &--active.dropdown-button--transparent {
             background-color: var(--background-primary-color);
+            color: var(--text-color-dark);
+        }
+
+        &__icon {
+            width: 20px;
         }
     }
 
@@ -23,7 +32,6 @@
         position: absolute;
         min-width: 230px;
         top: 30px;
-        right: 0;
         overflow: hidden;
         border-radius: .3rem;
         z-index: 2;
@@ -31,22 +39,42 @@
         color: var(--text-color-dark);
         box-shadow: 0 0 10px 1px var(--shadow-primary-color);
 
+        &--right {
+            right: 0;
+        }
+
         &--active {
             display: block;
         }
 
+        &--active.dropdown-menu--grid-6 {
+            display: grid;
+            grid-template-columns: repeat(6,1fr);
+        }
+
         &-item {
-            // display: flex;
-            // align-items: center;
-            // column-gap: .5rem;
-            // padding: .4rem .8rem;
-            // font-size: var(--font-size-6);
-            // cursor: pointer;
+            
+            &__content {
+                display: flex;
+                align-items: center;
+                column-gap: .5rem;
+                padding: .4rem .8rem;
+                font-size: var(--font-size-6);
+                cursor: pointer;
 
-            // &:hover {
-            //     background-color: var(--background-secondary-color);
-            // }
+                &:hover {
+                    background-color: var(--background-secondary-color);
+                }
+               
+                &--active {
+                    background-color: var(--background-secondary-color);
+                }
+            }
+        }
 
+        &__logo {
+            height: 100%;
+            aspect-ratio: 1 / 1;
         }
     }
 }

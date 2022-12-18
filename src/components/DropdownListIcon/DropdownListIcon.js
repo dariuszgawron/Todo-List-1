@@ -1,41 +1,68 @@
 import React, { useState } from "react";
 
+import Dropdown from "../Dropdown/Dropdown";
+
 import './DropdownListIcon.scss';
 
 const DropdownListIcon = props => {
     const [open, setOpen] = useState(false);
 
-    const handleIconClick = () => {
+    const handleIconClick = (e, className) => {
+        props.setIcon(className);
         setOpen(false);
     }
 
     const listIcons = [{
-            icon: <i class="fa-solid fa-briefcase"></i>
+            class: "fa-solid fa-list"
         }, {
-            icon: <i class="fa-solid fa-utensils"></i>
+            class: "fa-solid fa-list-check"
         }, {
-            icon: <i class="fa-solid fa-film"></i>
+            class: "fa-solid fa-list-ol"
         }, {
-            icon: <i class="fa-solid fa-plane"></i>
+            class: "fa-solid fa-heart"
         }, {
-            icon: <i class="fa-solid fa-car"></i>
+            class: "fa-solid fa-briefcase"
         }, {
-            icon: <i class="fa-solid fa-basket-shopping"></i>
+            class: "fa-solid fa-utensils"
         }, {
-            icon: <i class="fa-solid fa-phone"></i>
+            class: "fa-solid fa-film"
         }, {
-            icon: <i class="fa-solid fa-wrench"></i>
+            class: "fa-solid fa-plane"
         }, {
-            icon: <i class="fa-solid fa-music"></i>
+            class: "fa-solid fa-car"
         }, {
-            icon: <i class="fa-regular fa-image"></i>
+            class: "fa-solid fa-basket-shopping"
+        }, {
+            class: "fa-solid fa-phone"
+        }, {
+            class: "fa-solid fa-wrench"
+        }, {
+            class: "fa-solid fa-music"
+        }, {
+            class: "fa-solid fa-volleyball"
+        }, {
+            class: "fa-regular fa-image"
         }
     ];
 
     return (
-        <div className="dropdown-list-icon">
-
-        </div>
+        <Dropdown
+            open={open}
+            setOpen={setOpen}
+            button={<i className={`dropdown-button__icon ${props.icon}`}></i>}
+            // buttonClass="dropdown-button--transparent"
+            menuClass="dropdown-menu--grid-6"
+            menu={
+                listIcons
+                    .map(listIcon => (
+                        <div className={`dropdown-menu-item__content ${props.icon === listIcon.class ? 'dropdown-menu-item__content--active' : ''}`} onClick={(e) => handleIconClick(e, listIcon.class)}>
+                            <div className="dropdown-menu-item__logo">
+                                <i className={`dropdown-menu-item__icon ${listIcon.class}`}></i>
+                            </div>
+                        </div>
+                ))
+            }
+        />
     )
 }; 
 
