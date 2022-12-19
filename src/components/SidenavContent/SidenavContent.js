@@ -9,23 +9,23 @@ const SidenavContent = props => {
         <div className='sidenav-content'>
             <div className='sidenav-content__item'>
                 <CategoryList 
-                    lists={props.lists.filter(list => list.system)}
-                    selectedList={props.selectedList} 
-                    toggleList={props.toggleList} 
-                    tasks={props.tasks}
-                    sidenavMenuRef={props.sidenavMenuRef}
-                    type='system'
+                    lists = {props.lists.filter(list => list.system)}
+                    selectedList = {props.selectedList} 
+                    toggleList = {props.toggleList} 
+                    tasks = {props.tasks}
+                    sidenavMenuRef = {props.sidenavMenuRef}
+                    type = 'system'
                 />
             </div>
             <hr className='sidenav-content__line' />
             <div className='sidenav-content__item'>
                 <CategoryList 
-                    lists={props.lists.filter(list => !list.system)}
-                    selectedList={props.selectedList} 
-                    toggleList={props.toggleList} 
-                    tasks={props.tasks}
-                    sidenavMenuRef={props.sidenavMenuRef}
-                    system='custom'
+                    lists = {props.lists.filter(list => !list.system)}
+                    selectedList = {props.selectedList} 
+                    toggleList = {props.toggleList} 
+                    tasks = {props.tasks}
+                    sidenavMenuRef = {props.sidenavMenuRef}
+                    system = 'custom'
                 />
             </div>
         </div>

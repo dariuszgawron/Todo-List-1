@@ -2,7 +2,6 @@ import React from 'react';
 
 import DropdownList from '../DropdownList/DropdownList';
 import DropdownFilter from '../DropdownFilter/DropdownFilter';
-// import DeleteItemModal from '../DeleteItemModal/DeleteItemModal';
 
 import './TaskHeader.scss';
 
@@ -38,15 +37,15 @@ const TaskHeader = (props) => {
                 </div>
                 <div className='task-header__content'>
                     <DropdownFilter
-                        selectedList={props.selectedList}
-                        toggleListState={props.toggleListState}
-                        editListDetails={props.editListDetails}
+                        selectedList = {props.selectedList}
+                        toggleListState = {props.toggleListState}
+                        editListDetails = {props.editListDetails}
                     />
                     <DropdownList 
-                        selectedList={props.selectedList}
-                        setIsEditingList={props.setIsEditingList} 
-                        setIsDeletingList={props.setIsDeletingList}
-                        toggleListState={props.toggleListState}
+                        selectedList = {props.selectedList}
+                        setIsEditingList = {props.setIsEditingList} 
+                        setIsDeletingList = {props.setIsDeletingList}
+                        toggleListState = {props.toggleListState}
                     />
                 </div>
             </div>

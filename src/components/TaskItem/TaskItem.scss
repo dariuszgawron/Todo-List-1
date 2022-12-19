@@ -9,6 +9,7 @@
     background-color: var(--background-primary-color);
     border: 2px solid var(--background-primary-color);
     cursor: pointer;
+    transition: .3s ease-out;
 
     &:hover {
         background-color: rgb(245, 247, 253);

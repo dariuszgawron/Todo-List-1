@@ -2,7 +2,6 @@ import React from "react";
 
 import './SidenavHeader.scss';
 
-// import SidenavProfile from "../SidenavProfile/SidenavProfile";
 import SearchBar from "../SearchBar/SearchBar";
 
 const SidenavHeader = props => {
@@ -20,10 +19,9 @@ const SidenavHeader = props => {
                 <h2 className="sidenav-header-logo__title">TODO</h2>
             </div>
             
-            {/* <SidenavProfile /> */}
             <SearchBar 
-                setKeyword={props.setKeyword} 
-                sidenavMenuRef={props.sidenavMenuRef}
+                setKeyword = {props.setKeyword} 
+                sidenavMenuRef = {props.sidenavMenuRef}
             />
         </div>
     )

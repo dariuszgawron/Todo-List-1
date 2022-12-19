@@ -2,14 +2,12 @@ import React from "react";
 
 import './SidenavProfile.scss';
 
-const SidenavProfile = props => {
+const SidenavProfile = () => {
     return (
         <div className="sidenav-profile">
             <div className="sidenav-profile__logo">
-                X
             </div>
             <div className="sidenav-profile__data">
-                X
             </div>
         </div>
     )

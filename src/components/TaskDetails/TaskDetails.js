@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import DeleteItemModal from "../DeleteItemModal/DeleteItemModal";
 
@@ -13,6 +13,8 @@ const TaskDetails = props => {
     const [taskDescription, setTaskDescription] = useState('');
     const [taskFavorite, setTaskFavorite] = useState(false);
     const [taskCompleted, setTaskCompleted] = useState(false);
+    const taskInputDateRef = useRef(null);
+    const taskInputRepeatRef = useRef(null);
 
     const handleCloseClick = () => {
         props.hideTaskDetails();
@@ -37,8 +39,7 @@ const TaskDetails = props => {
         ? 'task-details__icon--fill fa-solid fa-star'
         : 'task-details__icon--empty fa-regular fa-star';
 
-    const handleFavoriteClick = e => {
-        // props.toggleTaskState(props.task.id, 'favorite');
+    const handleFavoriteClick = () => {
         props.editTask(props.task.id, 'favorite', !props.task.favorite);
     }
 
@@ -73,7 +74,6 @@ const TaskDetails = props => {
     const handleDateBlur = e => {
         props.editTask(props.task.id, 'date', e.target.value);
         e.target.type='text';
-        
     }
     const handleDescriptionBlur = e => {
         props.editTask(props.task.id, 'description', e.target.value);
@@ -86,7 +86,6 @@ const TaskDetails = props => {
     }
 
     const onDelete = () => {
-        // props.setIsEditingTask(false);
         props.hideTaskDetails();
         props.setIsDeletingTask(false);
     }
@@ -131,7 +130,7 @@ const TaskDetails = props => {
                             <i className="task-details__icon fa-regular fa-calendar-days"></i>
                         </div>
                         <div className="task-details__value">
-                            <input className="task-details__date" type="text" placeholder="Execution date" onFocus={e => e.target.type='date'} onBlur={handleDateBlur} onChange={handleDateChange} value={taskDate}/>
+                            <input className="task-details__date" type="text" placeholder="Execution date" onFocus={e => e.target.type='date'} onBlur={handleDateBlur} onChange={handleDateChange} value={taskDate} ref={taskInputDateRef} />
                         </div>
                     </div>
                     <div className="task-details__row">
@@ -140,7 +139,7 @@ const TaskDetails = props => {
                         </div>
                         <div className="task-details__value">
                             <select className="task-details__repeat" name="repeat" value={taskRepeat} onChange={handleRepeatChange} required>
-                                <option className="task-details__repeat-option" value="">Repeat</option>
+                                <option className="task-details__repeat-option" value="" ref={taskInputRepeatRef}>Repeat</option>
                                 <option className="task-details__repeat-option" value="daily">Daily</option>
                                 <option className="task-details__repeat-option" value="weekly">Weekly</option>
                                 <option className="task-details__repeat-option" value="montly">Montly</option>
@@ -174,14 +173,14 @@ const TaskDetails = props => {
             {   
                 props.isDeletingTask &&
                 <DeleteItemModal 
-                    title="Delete task"
-                    description={`Are you sure you want to delete the "${taskName}" task?`}
-                    itemId={props.task.id}
-                    deleteItem={props.deleteTask}
-                    onDelete={onDelete}
-                    onCancel={onCancel}
-                    isDeleting={props.isDeletingTask}
-                    setIsDeleting={props.setIsDeletingTask}
+                    title = "Delete task"
+                    description = {`Are you sure you want to delete the "${taskName}" task?`}
+                    itemId = {props.task.id}
+                    deleteItem = {props.deleteTask}
+                    onDelete = {onDelete}
+                    onCancel = {onCancel}
+                    isDeleting = {props.isDeletingTask}
+                    setIsDeleting = {props.setIsDeletingTask}
                 />
             }
         </div>

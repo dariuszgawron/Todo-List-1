@@ -1,11 +1,10 @@
-import React, { useEffect, useReducer, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import './TaskItem.scss';
 
 const TaskItem = props => {
     const [checked, setChecked] = useState(false);
     const taskClass = props.selectedTask && (props.selectedTask.id === props.task.id) ? 'task-item--selected' : '';
-    // const isChecked = props.task.checked ? 'checked' : '';
     const favoriteIconClass = props.task.favorite
         ? 'task-item__favorite-icon--fill fa-solid fa-star'
         : 'task-item__favorite-icon--empty fa-regular fa-star';
@@ -21,7 +20,6 @@ const TaskItem = props => {
 
     const handleFavoriteClick = e => {
         e.stopPropagation();
-        // props.toggleTaskState(props.task.id, 'favorite');
         props.editTask(props.task.id, 'favorite', !props.task.favorite)
     }
 
@@ -35,7 +33,7 @@ const TaskItem = props => {
         const tomorrowInHours = tomorrow.setHours(0, 0, 0, 0);
         const selectedDateInHours = selectedDate.setHours(0, 0, 0, 0);
         let remainingTime = '';
-        if(selectedDateInHours === todayInHours) {
+        if (selectedDateInHours === todayInHours) {
             remainingTime = 'Today';
         } else if (selectedDateInHours === tomorrowInHours) {
             remainingTime = 'Tomorrow';
@@ -92,8 +90,7 @@ const TaskItem = props => {
                 </div>
             </div>
             <div className="task-item__favorite" onClick={handleFavoriteClick}>
-                <i className={`task-item__favorite-icon ${favoriteIconClass}`}>
-                </i>
+                <i className={`task-item__favorite-icon ${favoriteIconClass}`}></i>
             </div>
         </li>
     )

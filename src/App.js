@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import './App.scss';
 import { useEffect, useRef, useState } from 'react';
 import { nanoid } from 'nanoid'
@@ -12,7 +11,6 @@ import Main from './components/Main/Main';
 import TaskDetails from './components/TaskDetails/TaskDetails';
 import DeleteItemModal from './components/DeleteItemModal/DeleteItemModal';
 import EditListModal from './components/EditListModal/EditListModal';
-// import TaskList from './components/TaskList/TaskList';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,21 +24,18 @@ function App() {
   const [selectedTaskId, setSelectedTaskId] = useState(null);
   const [isEditingTask, setIsEditingTask] = useState(false);
   const [isDeletingTask, setIsDeletingTask] = useState(false);
-  // const [showDetails, setShowDetails] = useState(false);
   const [keyword, setKeyword] = useState('');
-  const [filter, setFilter] = useState('');
   const taskDetailsRef = useRef(null);
   const sidenavMenuRef = useRef(null);
   const loaderRef = useRef(null);
 
-  // Custom lists
+  // LISTS
   const addList = (listName) => {
     const newList = {
       id: `list-${nanoid()}`, 
       name: createListTitle(lists, listName), 
       icon: 'fa-solid fa-list',
       filter: null,
-      // sort: (firstTask, secondTask) => (firstTask.name).localeCompare(secondTask.name),
       sort: sortOptions[0].id,
       showCompletedTask: false,
       timeStamp: Date.now()
@@ -66,7 +61,7 @@ function App() {
   };
   const editListDetails = (listId, property, value) => {
     const modifiedLists = lists.map(list => {
-      if(list.id===listId) {
+      if(list.id === listId) {
         return {...list, [property]: value}
       }
       return list;
@@ -90,10 +85,7 @@ function App() {
     setSelectedList(selectedList);
     setSelectedListId(selectedList.id);
     localStorage.setItem('todo-selectedList', JSON.stringify(selectedList));
-    // setSelectedTaskId(null);
-    // setIsEditingTask(false);
     hideTaskDetails();
-    // setIsDeletingTask(false);
   }
   const toggleListState = (listId, property) => {
     const modifiedLists = lists.map(list => {
@@ -109,17 +101,17 @@ function App() {
     let availableTitle = listName;
     let exist = lists.map(list => list.name).indexOf(availableTitle);
     let index = 1;
-    while(exist!==-1) {
+    while(exist !== -1) {
       availableTitle = `${listName} (${index++})`;
       exist = lists.map(list => list.name).indexOf(availableTitle);
     }
     return availableTitle;
   }
 
-  // Tasks
+  // TASKS
   const addTask = (taskName, taskDate = '', taskRemind = '', taskRepeat = '') => {
     const currentList = 
-      (lists.find(list => (list.system && list.id === selectedList.id))!==undefined)
+      (lists.find(list => (list.system && list.id === selectedList.id)) !== undefined)
       ? lists[0]
       : selectedList;
 
@@ -139,7 +131,7 @@ function App() {
     setTasks(modifiedTasks);
     localStorage.setItem('todo-tasks', JSON.stringify(modifiedTasks));
   };
-  const toggleTaskState = (taskId, property='completed') => {
+  const toggleTaskState = (taskId, property = 'completed') => {
     let modifiedTasks = tasks.map(task => {
       if(task.id === taskId) {
         return {...task, [property]: !task[property]}
@@ -173,7 +165,7 @@ function App() {
   }
   const editTask = (taskId, property, value) => {
     const modifiedTasks = tasks.map(task => {
-      if(task.id===taskId) {
+      if(task.id === taskId) {
         return {...task, [property]: value}
       }
       return task;
@@ -271,82 +263,81 @@ function App() {
       !isLoading && selectedList
       ? <>
           <Sidenav 
-            lists={lists}
-            addCustomList={addList} 
-            editCustomList={editList}
-            deleteCustomList={deleteList}
-            selectedList={selectedList}
-            toggleList={toggleList}
-            tasks={tasks} 
-            keyword={keyword} 
-            setKeyword={setKeyword}
-            sidenavMenuRef={sidenavMenuRef}
+            lists = {lists}
+            addCustomList = {addList} 
+            editCustomList = {editList}
+            deleteCustomList = {deleteList}
+            selectedList = {selectedList}
+            toggleList = {toggleList}
+            tasks = {tasks} 
+            keyword = {keyword} 
+            setKeyword = {setKeyword}
+            sidenavMenuRef = {sidenavMenuRef}
           />
           <Main 
-            lists={lists}
-            // systemLists={systemLists}
-            selectedList={selectedList}
-            editListDetails={editListDetails}
-            editCustomList={editList}
-            isEditingList={isEditingList}
-            setIsEditingList={setIsEditingList}
-            deleteCustomList={deleteList}
-            isDeletingList={isDeletingList}
-            setIsDeletingList={setIsDeletingList}
-            toggleListState={toggleListState}
-            tasks={tasks}  
-            selectedTask={selectedTask}
-            toggleTask={toggleTask}
-            addTask={addTask} 
-            editTask={editTask}
-            toggleTaskState={toggleTaskState}
-            deleteTask={deleteTask}
-            keyword={keyword}
-            sidenavMenuRef={sidenavMenuRef}
+            lists = {lists}
+            selectedList = {selectedList}
+            editListDetails = {editListDetails}
+            editCustomList = {editList}
+            isEditingList = {isEditingList}
+            setIsEditingList = {setIsEditingList}
+            deleteCustomList = {deleteList}
+            isDeletingList = {isDeletingList}
+            setIsDeletingList = {setIsDeletingList}
+            toggleListState = {toggleListState}
+            tasks = {tasks}  
+            selectedTask = {selectedTask}
+            toggleTask = {toggleTask}
+            addTask = {addTask} 
+            editTask = {editTask}
+            toggleTaskState = {toggleTaskState}
+            deleteTask = {deleteTask}
+            keyword = {keyword}
+            sidenavMenuRef = {sidenavMenuRef}
           />
-          {isEditingTask && selectedTask!==null &&
+          {isEditingTask && selectedTask !== null &&
             <TaskDetails 
-              task={selectedTask} 
-              list={lists.find(list => list.id === selectedTask.listId)}
-              editTask={editTask}
-              isEditingTask={isEditingTask}
-              setIsEditingTask={setIsEditingTask}
-              deleteTask={deleteTask}
-              isDeletingTask={isDeletingTask}
-              setIsDeletingTask={setIsDeletingTask}
-              setSelectedTask={setSelectedTask}
-              toggleTaskState={toggleTaskState}
-              taskDetailsRef={taskDetailsRef}
-              hideTaskDetails={hideTaskDetails}
+              task = {selectedTask} 
+              list = {lists.find(list => list.id === selectedTask.listId)}
+              editTask = {editTask}
+              isEditingTask = {isEditingTask}
+              setIsEditingTask = {setIsEditingTask}
+              deleteTask = {deleteTask}
+              isDeletingTask = {isDeletingTask}
+              setIsDeletingTask = {setIsDeletingTask}
+              setSelectedTask = {setSelectedTask}
+              toggleTaskState = {toggleTaskState}
+              taskDetailsRef = {taskDetailsRef}
+              hideTaskDetails = {hideTaskDetails}
             />
           } 
           {   
             isDeletingList &&
             <DeleteItemModal 
-              title="Delete list"
-              description={`Are you sure you want to delete the "${selectedList.name}" list along with all related tasks?`}
-              itemId={selectedList.id}
-              deleteItem={deleteList}
-              isDeleting={isDeletingList}
-              setIsDeleting={setIsDeletingList}
-              onDelete={onDeleteList}
-              onCancel={onCancelList}
+              title = "Delete list"
+              description = {`Are you sure you want to delete the "${selectedList.name}" list along with all related tasks?`}
+              itemId = {selectedList.id}
+              deleteItem = {deleteList}
+              isDeleting = {isDeletingList}
+              setIsDeleting = {setIsDeletingList}
+              onDelete = {onDeleteList}
+              onCancel = {onCancelList}
             />
           }
           {
             isEditingList && 
             <EditListModal 
-              title="Edit list"
-              list={selectedList}
-              editList={editList}
-              isEditing={isEditingList} 
-              setIsEditingList={setIsEditingList}
+              title = "Edit list"
+              list = {selectedList}
+              editList = {editList}
+              isEditing = {isEditingList} 
+              setIsEditingList = {setIsEditingList}
             />
           }
         </>
       : <Loader 
-          isLoading={isLoading} 
-          loaderRef={loaderRef}
+          isLoading = {isLoading} 
+          loaderRef = {loaderRef}
         />
     }
     </div>
