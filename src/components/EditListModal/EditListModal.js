@@ -13,9 +13,6 @@ const EditListModal = props => {
     const handleNameChange = e => {
         setName(e.target.value);
     }
-    const handleIconChange = e => {
-        setIcon(e.target.value);
-    }
     const handleSaveClick = () => {
         editListModalRef.current.classList.remove('modal--active');
         setTimeout(() => {
@@ -45,8 +42,8 @@ const EditListModal = props => {
                 <div className='edit-list-modal__description'>
                     <form className="edit-list-modal-form" onSubmit={handleSaveClick}>
                         <DropdownListIcon
-                            icon={icon}
-                            setIcon={setIcon}
+                            icon = {icon}
+                            setIcon = {setIcon}
                         />
                         <input className="edit-list-modal-form__input" type="text" value={name} onChange={handleNameChange} required/>
                     </form>

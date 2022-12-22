@@ -238,7 +238,7 @@ function App() {
         setTimeout(() => {
           setIsLoading(false);
         }, 300);
-      }, 3000);
+      }, 1300);
     }
   }, [lists]);
 

@@ -15,15 +15,15 @@ const DropdownFilter = props => {
 
     return (
         <Dropdown 
-            open={open}
-            setOpen={setOpen}
-            button={<i className="dropdown-button__icon fa-solid fa-filter"></i>}
-            buttonClass="dropdown-button--transparent"
-            menuClass="dropdown-menu--right"
-            menu={
+            open = {open}
+            setOpen = {setOpen}
+            button = {<i className="dropdown-button__icon fa-solid fa-filter"></i>}
+            buttonClass = "dropdown-button--transparent"
+            menuClass = "dropdown-menu--right"
+            menu = {
                 sortOptions
                     .map(menuItem => (
-                        <div className={`dropdown-menu-item__content ${props.selectedList.sort===menuItem.id ? 'dropdown-menu-item__content--active' : ''}`} onClick={() => handleClick(menuItem.id)}>
+                        <div className={`dropdown-menu-item__content ${props.selectedList.sort === menuItem.id ? 'dropdown-menu-item__content--active' : ''}`} onClick={() => handleClick(menuItem.id)}>
                             <div className="dropdown-menu-item__logo">
                                 <i className={`dropdown-menu-item__icon ${menuItem.icon}`}></i>
                             </div>

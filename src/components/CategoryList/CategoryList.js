@@ -10,13 +10,13 @@ const CategoryList = props => {
             {
                 props.lists && props.lists.map((list, index) => {
                     return <CategoryItem 
-                        list={list} 
-                        selectedList={props.selectedList} 
-                        toggleList={props.toggleList} 
-                        tasks={props.tasks}
-                        key={index} 
-                        type={props.type}
-                        sidenavMenuRef={props.sidenavMenuRef}
+                        list = {list} 
+                        selectedList = {props.selectedList} 
+                        toggleList = {props.toggleList} 
+                        tasks = {props.tasks}
+                        key = {index} 
+                        type = {props.type}
+                        sidenavMenuRef = {props.sidenavMenuRef}
                     />
                 })
             }

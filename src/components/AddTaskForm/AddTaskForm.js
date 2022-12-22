@@ -21,14 +21,14 @@ const AddTaskForm = props => {
     const handleRepeatChange = e => {
         setTaskRepeat(e.target.value);
     }
-    const handleOptionClick = (option, e) => {
-        if(activeOption===option) {
+    const handleOptionClick = (option) => {
+        if(activeOption === option) {
             setActiveOption('');
         } else {
             setActiveOption(option);
         }
     }
-    const handleNameFocus = e => {
+    const handleNameFocus = () => {
         setActiveOption('');
     }
 
@@ -49,26 +49,26 @@ const AddTaskForm = props => {
             <input className="task-form__input" type="text" id="task-form-value" onChange={handleNameChange} onFocus={handleNameFocus} value={taskName} placeholder="Add new task" required />
             <div className="task-form__options">
                 <div className="task-form-option">
-                    <div className="task-form-option__button" onClick={e => handleOptionClick('date',e)}>
+                    <div className="task-form-option__button" onClick={() => handleOptionClick('date')}>
                         <i className="task-form-option__icon fa-solid fa-calendar-days"></i>
                     </div>
-                    <div className={`task-form-option__content ${activeOption==='date' ? 'task-form-option__content--active' : ''}`}>
+                    <div className={`task-form-option__content ${activeOption === 'date' ? 'task-form-option__content--active' : ''}`}>
                         <input className="task-form-option__input" type="date" value={taskDate} onChange={handleDateChange} />
                     </div>
                 </div>
                 <div className="task-form-option">
-                    <div className="task-form-option__button" onClick={e => handleOptionClick('remind',e)}>
+                    <div className="task-form-option__button" onClick={() => handleOptionClick('remind')}>
                         <i className="task-form-option__icon fa-regular fa-bell"></i>
                     </div>
-                    <div className={`task-form-option__content ${activeOption==='remind' ? 'task-form-option__content--active' : ''}`}>
+                    <div className={`task-form-option__content ${activeOption === 'remind' ? 'task-form-option__content--active' : ''}`}>
                         <input className="task-form-option__input" type="datetime-local" value={taskRemind} onChange={handleRemindChange} />
                     </div>
                 </div>
                 <div className="task-form-option">
-                    <div className="task-form-option__button" onClick={e => handleOptionClick('repeat',e)}>
+                    <div className="task-form-option__button" onClick={() => handleOptionClick('repeat')}>
                         <i className="task-form-option__icon fa-solid fa-arrows-rotate" ></i>
                     </div>
-                    <div className={`task-form-option__content ${activeOption==='repeat' ? 'task-form-option__content--active' : ''}`} >
+                    <div className={`task-form-option__content ${activeOption === 'repeat' ? 'task-form-option__content--active' : ''}`} >
                         <select className="task-form-option__input" name="repeat" value={taskRepeat} onChange={handleRepeatChange}>
                             <option value="">Repeat</option>
                             <option value="daily">Daily</option>

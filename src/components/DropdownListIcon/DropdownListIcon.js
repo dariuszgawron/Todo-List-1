@@ -7,7 +7,7 @@ import './DropdownListIcon.scss';
 const DropdownListIcon = props => {
     const [open, setOpen] = useState(false);
 
-    const handleIconClick = (e, className) => {
+    const handleIconClick = (className) => {
         props.setIcon(className);
         setOpen(false);
     }
@@ -47,15 +47,14 @@ const DropdownListIcon = props => {
 
     return (
         <Dropdown
-            open={open}
-            setOpen={setOpen}
-            button={<i className={`dropdown-button__icon ${props.icon}`}></i>}
-            // buttonClass="dropdown-button--transparent"
-            menuClass="dropdown-menu--grid-6"
-            menu={
+            open = {open}
+            setOpen = {setOpen}
+            button = {<i className={`dropdown-button__icon ${props.icon}`}></i>}
+            menuClass = "dropdown-menu--grid-6"
+            menu = {
                 listIcons
                     .map(listIcon => (
-                        <div className={`dropdown-menu-item__content ${props.icon === listIcon.class ? 'dropdown-menu-item__content--active' : ''}`} onClick={(e) => handleIconClick(e, listIcon.class)}>
+                        <div className={`dropdown-menu-item__content ${props.icon === listIcon.class ? 'dropdown-menu-item__content--active' : ''}`} onClick={() => handleIconClick(listIcon.class)}>
                             <div className="dropdown-menu-item__logo">
                                 <i className={`dropdown-menu-item__icon ${listIcon.class}`}></i>
                             </div>

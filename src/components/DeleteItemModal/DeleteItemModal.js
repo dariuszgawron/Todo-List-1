@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 import Modal from '../Modal/Modal';
 
 import './DeleteItemModal.scss';
 
 const DeleteItemModal = props => {
-    // const [active, setActive] = useState(true);
     const deleteItemModalRef = useRef(null);
 
     const handleDeleteClick = () => {
@@ -27,7 +26,7 @@ const DeleteItemModal = props => {
     };
 
     return (
-        <Modal active={props.isDeleting} modalRef={deleteItemModalRef}>
+        <Modal active = {props.isDeleting} modalRef = {deleteItemModalRef}>
             <div className='delete-item-modal__content'>
                 <h3 className='delete-item-modal__title'>
                     {props.title}

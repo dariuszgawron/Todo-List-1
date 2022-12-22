@@ -9,7 +9,7 @@ const CategoryItem = props => {
         : (task) => task.listId === props.list.id;
     let numberOfTasks = props.tasks.filter(filter).filter(task => !task.completed).length;
     if(!numberOfTasks)
-        numberOfTasks='';
+        numberOfTasks = '';
 
     const handleClick = () => {
         props.toggleList(props.list.id);

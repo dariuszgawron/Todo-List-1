@@ -65,7 +65,6 @@ export const systemLists = [
         name: 'Planned',
         icon: 'fa-regular fa-calendar-check',
         filter: (task) => task.date,
-        // sort: (firstTask, secondTask) => secondTask.date - firstTask.date,
         sort: sortOptions[2].id,
         showCompletedTask: false,
         default: false

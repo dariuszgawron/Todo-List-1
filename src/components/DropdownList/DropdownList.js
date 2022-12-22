@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Dropdown from "../Dropdown/Dropdown";
 
@@ -42,12 +42,12 @@ const DropdownList = props => {
 
     return (
         <Dropdown 
-            open={open}
-            setOpen={setOpen}
-            button={<i className="dropdown-button__icon fa-solid fa-ellipsis"></i>}
-            buttonClass="dropdown-button--transparent"
-            menuClass="dropdown-menu--right"
-            menu={
+            open = {open}
+            setOpen = {setOpen}
+            button = {<i className="dropdown-button__icon fa-solid fa-ellipsis"></i>}
+            buttonClass = "dropdown-button--transparent"
+            menuClass = "dropdown-menu--right"
+            menu = {
                 menuList
                     .filter(menuItem => (!props.selectedList.system || menuItem.system))
                     .map(menuItem => (

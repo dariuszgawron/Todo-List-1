@@ -11,17 +11,19 @@ const Sidenav = props => {
         <header className="header" ref={props.sidenavMenuRef}>
             <div className="sidenav" id="sidenav">
                 <SidenavHeader 
-                    setKeyword={props.setKeyword} 
-                    sidenavMenuRef={props.sidenavMenuRef}
+                    setKeyword = {props.setKeyword} 
+                    sidenavMenuRef = {props.sidenavMenuRef}
                 />
                 <SidenavContent 
-                    lists={props.lists}
-                    selectedList={props.selectedList} 
-                    toggleList={props.toggleList} 
-                    tasks={props.tasks}
-                    sidenavMenuRef={props.sidenavMenuRef}
+                    lists = {props.lists}
+                    selectedList = {props.selectedList} 
+                    toggleList = {props.toggleList} 
+                    tasks = {props.tasks}
+                    sidenavMenuRef = {props.sidenavMenuRef}
                 />
-                <SidenavFooter addCustomList={props.addCustomList} />
+                <SidenavFooter 
+                    addCustomList = {props.addCustomList} 
+                />
             </div>
         </header>
     )
