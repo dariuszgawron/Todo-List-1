@@ -20,7 +20,7 @@ function App() {
   const [isEditingList, setIsEditingList] = useState(false);
   const [isDeletingList, setIsDeletingList] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const [selectedTask, setSelectedTask] = useState(null);
+  // const [selectedTask, setSelectedTask] = useState(null);
   const [selectedTaskId, setSelectedTaskId] = useState(null);
   const [isEditingTask, setIsEditingTask] = useState(false);
   const [isDeletingTask, setIsDeletingTask] = useState(false);
@@ -203,7 +203,7 @@ function App() {
     taskDetailsRef.current && taskDetailsRef.current.classList.remove('task-details--active');
     setTimeout(() => {
         setIsEditingTask(false);
-        setSelectedTask(null);
+        // setSelectedTask(null);
         setSelectedTaskId(null);
     }, 300);
   }
@@ -249,12 +249,12 @@ function App() {
     (activeList !== undefined)
       ? setSelectedList(activeList)
       : setSelectedList(null);
-    const activeTask = selectedTaskId !== null 
-      ? tasks.find(task => task.id === selectedTaskId) 
-      : undefined;
-    (activeTask !== undefined)
-      ? setSelectedTask(activeTask)
-      : setSelectedTask(null);
+    // const activeTask = selectedTaskId !== null 
+    //   ? tasks.find(task => task.id === selectedTaskId) 
+    //   : undefined;
+    // (activeTask !== undefined)
+    //   ? setSelectedTask(activeTask)
+    //   : setSelectedTask(null);
   }, [lists, selectedListId, tasks, selectedTaskId]);
 
   return (
@@ -267,7 +267,8 @@ function App() {
             addCustomList = {addList} 
             editCustomList = {editList}
             deleteCustomList = {deleteList}
-            selectedList = {selectedList}
+            // selectedList = {selectedList}
+            selectedList = {lists.find(list => list.id === selectedListId)}
             toggleList = {toggleList}
             tasks = {tasks} 
             keyword = {keyword} 
@@ -276,7 +277,8 @@ function App() {
           />
           <Main 
             lists = {lists}
-            selectedList = {selectedList}
+            // selectedList = {selectedList}
+            selectedList = {lists.find(list => list.id === selectedListId)}
             editListDetails = {editListDetails}
             editCustomList = {editList}
             isEditingList = {isEditingList}
@@ -286,7 +288,8 @@ function App() {
             setIsDeletingList = {setIsDeletingList}
             toggleListState = {toggleListState}
             tasks = {tasks}  
-            selectedTask = {selectedTask}
+            // selectedTask = {selectedTask}
+            selectedTask = {tasks.find(task => task.id === selectedTaskId)}
             toggleTask = {toggleTask}
             addTask = {addTask} 
             editTask = {editTask}
@@ -295,17 +298,20 @@ function App() {
             keyword = {keyword}
             sidenavMenuRef = {sidenavMenuRef}
           />
-          {isEditingTask && selectedTask !== null &&
+          {/* {isEditingTask && selectedTask !== null && */}
+          {isEditingTask &&
             <TaskDetails 
-              task = {selectedTask} 
-              list = {lists.find(list => list.id === selectedTask.listId)}
+              // task = {selectedTask} 
+              task = {tasks.find(task => task.id === selectedTaskId)}
+              // list = {lists.find(list => list.id === selectedTask.listId)}
+              list = {lists.find(list => list.id === tasks.find(task => task.id === selectedTaskId).listId)}
               editTask = {editTask}
               isEditingTask = {isEditingTask}
               setIsEditingTask = {setIsEditingTask}
               deleteTask = {deleteTask}
               isDeletingTask = {isDeletingTask}
               setIsDeletingTask = {setIsDeletingTask}
-              setSelectedTask = {setSelectedTask}
+              // setSelectedTask = {setSelectedTask}
               toggleTaskState = {toggleTaskState}
               taskDetailsRef = {taskDetailsRef}
               hideTaskDetails = {hideTaskDetails}
@@ -316,7 +322,8 @@ function App() {
             <DeleteItemModal 
               title = "Delete list"
               description = {`Are you sure you want to delete the "${selectedList.name}" list along with all related tasks?`}
-              itemId = {selectedList.id}
+              // itemId = {selectedList.id}
+              itemId = {selectedListId}
               deleteItem = {deleteList}
               isDeleting = {isDeletingList}
               setIsDeleting = {setIsDeletingList}
@@ -328,7 +335,8 @@ function App() {
             isEditingList && 
             <EditListModal 
               title = "Edit list"
-              list = {selectedList}
+              // list = {selectedList}
+              list = {lists.find(list => list.id === selectedListId)}
               editList = {editList}
               isEditing = {isEditingList} 
               setIsEditingList = {setIsEditingList}
